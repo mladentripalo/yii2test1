@@ -35,9 +35,8 @@ $this->title = 'My Yii Application';
     create action
     create two views
     create model...
-
     -->
-    <a href="<?=Yii::$app->getHomeUrl()?>?r=site/say&message=Hello+World+I+am+fat!">Entry form</a>
+    <a href="<?=Yii::$app->getHomeUrl()?>?r=site/entry">Entry form</a>
     <br/>
 
     <pre>
