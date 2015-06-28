@@ -39,8 +39,18 @@ $this->title = 'My Yii Application';
     <a href="<?=Yii::$app->getHomeUrl()?>?r=site/entry">Entry form</a>
     <br/>
 
-    <pre>
 
+    <!--
+    da access to countries table trough:
+        models/Country.php
+        controllers/CountryController.php
+        views/country/index.php
+    -->
+    <a href="<?=Yii::$app->getHomeUrl()?>?r=country/index">Countries DB table display 1</a>
+    <br/>
+
+
+    <pre>
     </pre>
 
     <br/>
