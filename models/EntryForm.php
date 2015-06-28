@@ -7,15 +7,15 @@
 
     class EntryForm extends Model {
 
-        public $efName;
-        public $efEmail;
+        public $yourName;
+        public $yourEmail;
 
 
         public function rules(){
 
             return [
-                [['efName','efEmail'], 'required'],
-                ['efEmail','email']
+                [['yourName','yourEmail'], 'required'],
+                ['yourEmail','email']
             ];
         }
     }

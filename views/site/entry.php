@@ -4,8 +4,8 @@
     use yii\widgets\ActiveForm;
 
     $form = ActiveForm::begin();
-    echo $form->field($model,'efNamme');
-    echo $form->field($model,'efEmail');
+    echo $form->field($model,'yourName');
+    echo $form->field($model,'yourEmail');
 
     echo '<div class="form-group">';
     {
