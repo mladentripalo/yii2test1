@@ -7,13 +7,13 @@
 ?>
 
 
-<h2>Countries</h2>
+<h2>Countries GridView</h2>
 
     <?=
         GridView::widget(
             ['dataProvider' => new ActiveDataProvider([
                 'query' => $query,
-                'pagination' => ['pageSize'=>7]
+                'pagination' => ['pageSize'=>5]
 
             ])
         ])

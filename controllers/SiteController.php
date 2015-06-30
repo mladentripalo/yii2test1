@@ -68,7 +68,7 @@ class SiteController extends Controller
 
 
     //kiz
-    public function actionSay($message='Hello!'){
+    public function actionSay($message='Hello, no specific message was passed!'){
         return $this->render('say',['message'=>$message]);
     }
 

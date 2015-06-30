@@ -35,4 +35,11 @@ class CountryController extends \yii\web\Controller
         ]);
     }
 
+    public function actionIndexListView()
+    {
+        return $this->render('indexListView', [
+            'query' => Country::find()
+        ]);
+    }
+
 }

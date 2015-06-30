@@ -55,8 +55,18 @@ $this->title = 'My Yii Application';
         controllers/CountryController.php / actionIndexGridView
         views/country/indexGridView.php
     -->
-    <a href="<?=Yii::$app->getHomeUrl()?>?r=country/index-grid-view">Countries DB table display using GrodView</a>
+    <a href="<?=Yii::$app->getHomeUrl()?>?r=country/index-grid-view">Countries DB table display using GridView</a>
     <br/>
+
+    <!--
+    da access to countries table trough:
+        models/Country.php
+        controllers/CountryController.php / actionIndexListView
+        views/country/indexListView.php
+    -->
+    <a href="<?=Yii::$app->getHomeUrl()?>?r=country/index-list-view">Countries DB table display using ListView</a>
+    <br/>
+
 
 
     <pre>
