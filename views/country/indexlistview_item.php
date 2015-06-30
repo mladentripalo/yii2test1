@@ -1,15 +1,16 @@
 <?php
-
-    use \app\models\Country;
     use yii\helpers\Html;
 
     /**
-     * @var Country $model
+     * @var \app\models\Country $model
      */
-
 ?>
 
-<div class="post">
-    <h3><?= Html::encode($model->code) ?></h3>
-    <p> Name: <?= Html::encode($model->name) ?> Population: <?= $model->population ?> </p>
-</div>
+<h3><?= Html::encode($model->code) ?></h3>
+<p>
+    <em>Name:</em>
+    <strong><?= Html::encode($model->name) ?></strong>
+    <em>Population:</em>
+    <strong><?= $model->population ?></strong>
+</p>
+<hr/>

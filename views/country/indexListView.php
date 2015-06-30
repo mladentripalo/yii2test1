@@ -3,10 +3,9 @@
     use \yii\data\ActiveDataProvider;
     use yii\widgets\ListView;
     use yii\data\Pagination;
-    use yii\db\ActiveQueryInterface;
 
-    /* @var $this yii\web\View */
-    /* @var ActiveQueryInterface $query */
+    /* @var yii\web\View $this */
+    /* @var yii\db\ActiveQueryInterface $query */
 
     $pagination = new Pagination([
         'defaultPageSize' => 5,
@@ -25,6 +24,9 @@
 <hr/>
 
 <h2>Countries ListView using separate view per item (indexlistview_item.php)</h2>
+
+
+
 <?=
     ListView::widget([
         'dataProvider' => $dataprovider,
@@ -33,6 +35,8 @@
 ?>
 
 
+<script>
 
 
+</script>
 

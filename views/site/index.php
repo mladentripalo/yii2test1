@@ -20,6 +20,14 @@ $this->title = 'My Yii Application';
     <a href="<?=Yii::$app->getHomeUrl()?>?r=gii">Gii</a>
     <br/>
 
+
+    <!--
+    "http://localhost/phpStorm/yii2test1/requirements.php"
+    -->
+    <a href="http://localhost/phpStorm/yii2test1/requirements.php">check Yii2 app requirements</a>
+    <br/>
+
+
     <!--
     hello world...
     calling "say" action defined in SiteController class (index.php?r=site/say)
@@ -40,11 +48,27 @@ $this->title = 'My Yii Application';
     <br/>
 
 
+
+
     <!--
     da access to countries table trough:
         models/Country.php
         controllers/CountryController.php / actionIndexSimple
         views/country/indexSimple.php
+
+
+
+        TODO:
+        navicat za relacije u bazi super
+        prvo search klase u jednostavnom grudu koji imam (filter)
+        vez u tablici sa relacijom između dva modela (npr County i Continent) da pokaže ime kontinenta i onda search sa kontinentom (tu bi mogo popizdit
+
+        search klase u dvije related tablice
+
+
+
+
+
     -->
     <a href="<?=Yii::$app->getHomeUrl()?>?r=country/index-simple">Countries DB table display Simple (html unordered list)</a>
     <br/>

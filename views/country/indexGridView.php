@@ -1,9 +1,12 @@
 <?php
-    /* @var $this yii\web\View */
-    /* @var $query */
 
     use \yii\data\ActiveDataProvider;
     use yii\grid\GridView;
+
+    /**
+     * @var yii\web\View $this
+     * @var \yii\db\ActiveQueryInterface $query
+     */
 ?>
 
 
@@ -14,7 +17,6 @@
             ['dataProvider' => new ActiveDataProvider([
                 'query' => $query,
                 'pagination' => ['pageSize'=>5]
-
             ])
         ])
     ?>
