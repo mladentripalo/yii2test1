@@ -7,7 +7,7 @@ use yii\data\Pagination;
 
 class CountryController extends \yii\web\Controller
 {
-    public function actionIndex()
+    public function actionIndexSimple()
     {
         $query = Country::find();
 
@@ -22,9 +22,16 @@ class CountryController extends \yii\web\Controller
             ->all();
 
 
-        return $this->render('index', [
+        return $this->render('indexSimple', [
                 'countries' => $countries,
-                'pagination' => $pagination
+                'pagination' => $pagination,
+        ]);
+    }
+
+    public function actionIndexGridView()
+    {
+        return $this->render('indexGridView', [
+            'query' => Country::find()
         ]);
     }
 

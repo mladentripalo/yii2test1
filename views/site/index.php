@@ -43,10 +43,19 @@ $this->title = 'My Yii Application';
     <!--
     da access to countries table trough:
         models/Country.php
-        controllers/CountryController.php
-        views/country/index.php
+        controllers/CountryController.php / actionIndexSimple
+        views/country/indexSimple.php
     -->
-    <a href="<?=Yii::$app->getHomeUrl()?>?r=country/index">Countries DB table display 1</a>
+    <a href="<?=Yii::$app->getHomeUrl()?>?r=country/index-simple">Countries DB table display Simple (html unordered list)</a>
+    <br/>
+
+    <!--
+    da access to countries table trough:
+        models/Country.php
+        controllers/CountryController.php / actionIndexGridView
+        views/country/indexGridView.php
+    -->
+    <a href="<?=Yii::$app->getHomeUrl()?>?r=country/index-grid-view">Countries DB table display using GrodView</a>
     <br/>
 
 
