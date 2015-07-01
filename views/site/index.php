@@ -62,8 +62,10 @@ $this->title = 'My Yii Application';
         navicat za relacije u bazi super
         prvo search klase u jednostavnom grudu koji imam (filter)
         vez u tablici sa relacijom između dva modela (npr County i Continent) da pokaže ime kontinenta i onda search sa kontinentom (tu bi mogo popizdit
-
         search klase u dvije related tablice
+        slek
+        grunt dobar tool za produkcija->development
+
 
 
 
