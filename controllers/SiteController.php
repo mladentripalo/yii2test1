@@ -78,6 +78,9 @@ class SiteController extends Controller
     }
 
 
+    public function actionActRecJoin(){
+        return $this->render('arecjoin');
+    }
 
 
 

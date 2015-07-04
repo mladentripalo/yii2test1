@@ -101,6 +101,11 @@ $this->title = 'My Yii Application';
     <a href="<?=Yii::$app->getHomeUrl()?>?r=site/aqjoin">databases join using ActiveQuery class</a>
     <br/>
 
+    <!--
+    databases join using Two ActiveRecord model classes ...
+    -->
+    <a href="<?=Yii::$app->getHomeUrl()?>?r=site/act-rec-join">databases join using Two ActiveRecord model classes</a>
+    <br/>
 
 
 
