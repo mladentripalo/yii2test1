@@ -31,8 +31,6 @@ class Country extends \yii\db\ActiveRecord
             [['code'], 'string', 'max' => 2],
             [['name'], 'string', 'max' => 52]
         ];
-
-
     }
 
     /**

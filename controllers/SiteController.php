@@ -72,6 +72,15 @@ class SiteController extends Controller
         return $this->render('say',['message'=>$message]);
     }
 
+
+    public function actionAqjoin(){
+        return $this->render('aqjoin');
+    }
+
+
+
+
+
     public function actionIndex()
     {
         return $this->render('index');
