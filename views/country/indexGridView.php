@@ -7,10 +7,15 @@
      * @var yii\web\View $this
      * @var \yii\db\ActiveQueryInterface $query
      */
+
+
+
 ?>
 
 
 <h2>Countries GridView</h2>
+
+
 
     <?=
         GridView::widget(
