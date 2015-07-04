@@ -3,16 +3,13 @@
     namespace app\models;
     use yii\db\ActiveRecord;
 
-    /*
+    /**
      *
      * @property string $name
      * @property int $population
      * @property string $code
-     * @property string $kontinent
-     *
+     * @property Kontinent $kontinent
      */
-
-
     class Drzava extends ActiveRecord {
 
         // overloaded
@@ -39,20 +36,19 @@
             return [
                 'code' => 'Kod',
                 'name' => 'Ime',
-                'population' => 'Stanovnika',
-                'kontinent' => 'Kontinent',
+                'population' => 'Stanovnika'
             ];
         }
 
         /**
-         * @return string
+         * @return Kontinent
          */
         public function getKontinent()
         {
             return $this->hasOne(
                 Kontinent::className(),
                 ['continent_id' => 'continent_id'])
-                ->name;
+                ->one();
         }
     }
 

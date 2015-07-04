@@ -9,7 +9,9 @@
  */
 
     require_once('C:\xampp\htdocs\phpStorm\yii2test1\kiz\YiiHelpers.php');
-    use yii\db\Query;
+    use \app\models\Drzava;
+    use app\models\Kontinent;
+    use \yii\db\ActiveQuery;
 ?>
 
     <p>
@@ -27,15 +29,20 @@
 
 <pre>
 
-<?php
-?>
 
-</pre>
+    <?php
 
-    <p>
-        Code above uses simple query class to build SQL JOIN statement in order to create rlational link between two tables
-        without using any Model classes, it's a quick way to fill nested string array containing only text fields.
-    </p>
+        // returns ActiveQuery
+        $something = Drzava::find()->joinWith(['Kontinent']);
+        echo $something->className() . "\n";
+
+
+        indent_print_r($something->all());
+
+
+
+
+    ?>
 
 
     <h3>Code:</h3>

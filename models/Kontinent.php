@@ -9,7 +9,7 @@
      *
      * @property string $continent_id
      * @property string $name
-     * @property ActiveRecord [] $drzave
+     * @property Drzava [] $drzava
      *
      */
     class Kontinent extends ActiveRecord
@@ -42,10 +42,11 @@
             ];
         }
 
-        public function getDrzave()
+        public function getDrzava()
         {
             return $this->hasMany(
                 Drzava::className(),
-                ['continent_id' => 'continent_id']);
+                ['continent_id' => 'continent_id'])
+                ->all();
         }
     }
