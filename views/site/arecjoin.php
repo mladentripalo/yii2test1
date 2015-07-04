@@ -8,7 +8,7 @@
  *
  */
 
-    require('..\..\kiz\YiiHelpers.php');
+    require_once('C:\xampp\htdocs\phpStorm\yii2test1\kiz\YiiHelpers.php');
     use yii\db\Query;
 ?>
 
@@ -16,7 +16,6 @@
         Simple JQuerry clock: <span id="clk"></span>
     </p>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
             $('#clk').text((new Date()).toLocaleTimeString());
@@ -62,7 +61,7 @@
     <h3>Contents of returned $res array:</h3>
 
     <pre>
-        <?= indent_print_r($res) ?>
+
     </pre>
 
 
