@@ -4,8 +4,8 @@
 defined('YII_DEBUG') or define('YII_DEBUG', true);
 defined('YII_ENV') or define('YII_ENV', 'dev');
 
-require(__DIR__ . '/../vendor/autoload.php');
-require(__DIR__ . '/../vendor/yiisoft/yii2/Yii.php');
+require('C:\xampp\htdocs\yii2basic_2.0.4_vendor\vendor/autoload.php');
+require('C:\xampp\htdocs\yii2basic_2.0.4_vendor\vendor/yiisoft/yii2/Yii.php');
 
 $config = require(__DIR__ . '/../config/web.php');
 

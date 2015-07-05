@@ -26,6 +26,7 @@
         "yiisoft/yii2-faker": "*"
     },
     "config": {
+        "vendor-dir": "C:/xampp/htdocs/yii2basic_2.0.4_vendor/vendor",
         "process-timeout": 1800
     },
     "scripts": {
