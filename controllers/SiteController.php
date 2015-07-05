@@ -82,6 +82,11 @@ class SiteController extends Controller
         return $this->render('arecjoin');
     }
 
+    public function actionKizVarExample(){
+        return $this->render('kizyiivarinspect');
+    }
+
+
 
 
     public function actionIndex()

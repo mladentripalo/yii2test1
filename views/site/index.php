@@ -92,6 +92,12 @@ $this->title = 'My Yii Application';
     -->
     <a href="<?=Yii::$app->getHomeUrl()?>?r=country/index-list-view">Countries DB table display using ListView</a>
     <br/>
+    <br/>
+
+
+
+    <a href="<?=Yii::$app->getHomeUrl()?>?r=site/kiz-var-example">Example using kiz_yii_var_inspect() function to display Yii objects</a>
+    <br/>
 
 
 

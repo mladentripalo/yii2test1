@@ -46,6 +46,8 @@
 
         if($drz){
 
+            kiz_yii_var_inspect($drz);
+
             YII_DEBUG && assert('$drz->className()==="app\models\Drzava"');
 
             echo "\n" . $drz->code;
@@ -55,6 +57,8 @@
         }
         else
             echo "\n\$drz Not Found!";
+
+        echo 'path: ', Yii::$app->basePath;
 
 
         /** @var ActiveQuery $aquery */
