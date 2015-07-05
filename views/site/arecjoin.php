@@ -68,6 +68,17 @@
 
             kiz_yii_var_inspect($aquery);
 
+            $tupac = 'Kopa kabana!';
+            kiz_yii_var_inspect($tupac);
+
+            $inatager = 375;
+            kiz_yii_var_inspect($inatager);
+
+            $faloat = 375.44;
+            kiz_yii_var_inspect($faloat);
+
+            $auraay = ['tenk', 'boca', 'pupaja'=>'unreal'];
+            kiz_yii_var_inspect($auraay);
 
 
             //echo "\n" . $aquery->sql;

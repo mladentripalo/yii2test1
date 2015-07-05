@@ -26,10 +26,10 @@
                 }
             }
             elseif ( $ty=='string' ){
-                echo '"',$v,'"';
+                echo '"',htmlspecialchars($v),'"';
             }
             else {
-                echo $v;
+                echo htmlspecialchars(''.$v);
             }
         }
 
@@ -38,12 +38,12 @@
 
 
     // do not change function name!
-    function kiz_yii_var_inspect($label, $val = "__undefin_e_d__")
+    function kiz_yii_var_inspect($label, $val = '__undefin_e_d__')
     {
         if(!defined('YII_DEBUG') || !YII_DEBUG || !function_exists('debug_backtrace'))
             return;
 
-        if($val == "__undefin_e_d__") {
+        if($val == '__undefin_e_d__') {
 
             /* The first argument is not the label but the
                variable to kiz_yii_var_inspect itself, so we need a label.
@@ -58,8 +58,14 @@
             */
 
             $val = $label;
-
             $bt = debug_backtrace();
+
+            assert('$bt');
+            assert('isset($bt[0]["file"])');
+            assert('!empty($bt[0]["file"])');
+            assert('isset($bt[0]["line"])');
+            assert('is_int($bt[0]["line"])');
+
             $src = file($bt[0]["file"]);
             $line = $src[ $bt[0]['line'] - 1 ];
 
@@ -86,28 +92,26 @@
 
             $fil = substr($bt[0]["file"],strlen(Yii::$app->basePath)+1);
 
-
-            echo '<pre><span style="color: #3f8d3a">';
+            echo '<pre><span style="color: #00209f">';
             echo '*** kiz_yii_var_inspect() *** <span style="color: #f30008;font-weight: bolder">', $label, '</span> ';
             echo '<em>',($typ=gettype($val)),'</em> ';
-            if($typ=='object')
-                echo '('.get_class($val).') ';
+            echo $typ=='object' ? '('.get_class($val).') ' : '' ;
             echo 'in <strong>',$fil,'</strong>:',$bt[0]['line'],"\n";
 
             switch($typ) {
                 case 'array':
-                    echo "listing contents of array (recursive) \n";
+                    echo "listing contents of array (recursive)...";
                     indent_print_r($val);
                     break;
                 case 'object':
-                    echo 'listing properties of object ',get_class($val)," (recursive)...\n";
+                    echo 'listing properties of object ',get_class($val)," (recursive)...";
                     indent_print_r($val);
                     break;
                 case 'string':
-                    echo $label.' = "'.$val.'""';
+                    echo $label.' = "'.htmlspecialchars($val).'"';
                     break;
                 default:
-                    echo $label.'='.$val."\n";
+                    echo $label.' = '.htmlspecialchars(''.$val)."\n";
                     break;
             }
 
