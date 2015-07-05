@@ -1,5 +1,6 @@
 <?php
 
+
     function indent_print_r($collection, $prefix="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;") {
 
         $n=0;
@@ -96,7 +97,7 @@
             }
             $label = $varname;
 
-            $fil = substr($bt[0]["file"],strlen(Yii::$app->basePath)+1);
+            $fil = substr($bt[0]["file"],strlen(\Yii::$app->basePath)+1);
 
             echo '<pre><span style="color: #00209f">';
             echo '*** kiz_yii_var_inspect() *** <span style="color: #f30008;font-weight: bolder">', $label, '</span> ';

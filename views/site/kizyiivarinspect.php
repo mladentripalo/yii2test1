@@ -1,7 +1,5 @@
 <?php
 
-    namespace kizyiivarinspect;
-
     use yii\web\Application;
     use app\models\Drzava;
     use \yii\db\ActiveQuery;
