@@ -10,7 +10,7 @@
 
             $n++;
             $ty = gettype($v);
-            echo $prefix, '<strong>', $k, '</strong>: <em>', $ty, '</em> ', $ty=='object' ? '('.get_class($v).')' : '';
+            echo $prefix, '<strong>', $k, '</strong>: <em>', $ty, '</em> ', is_object($v) ? '('.get_class($v).')' : '';
 
             if( $ty=='array' ){
                 if(count($v)) {
@@ -28,8 +28,14 @@
             elseif ( $ty=='string' ){
                 echo '"',htmlspecialchars($v),'"';
             }
-            else {
+            elseif ( $ty=='boolean' ){
+                echo $v ? 'TRUE' : 'FALSE';
+            }
+            elseif(is_scalar($v) || $v===null) {
                 echo htmlspecialchars(''.$v);
+            }
+            else {
+                echo 'Unknown unprintable variable type!';
             }
         }
 
@@ -118,9 +124,6 @@
             echo '</span></pre>';
         }
     }
-    ?>
-
-<span style="color: saddlebrown;font-weight: bolder"></span>
 
 
 

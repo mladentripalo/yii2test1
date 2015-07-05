@@ -8,7 +8,7 @@
  *
  */
 
-    require_once('C:\xampp\htdocs\phpStorm\yii2test1\kiz\YiiHelpers.php');
+    require_once('C:\xampp\htdocs\phpStorm\yii2test1\kiz\kiz_yii.php');
     use \app\models\Drzava;
     use app\models\Kontinent;
     use \yii\db\ActiveQuery;
@@ -62,10 +62,6 @@
 
         if($aquery){
 
-            //echo "\n" . $aquery->className();
-
-            YII_DEBUG && assert('$aquery->className()==="yii\db\ActiveQuery"');
-
             kiz_yii_var_inspect($aquery);
 
             $tupac = 'Kopa kabana!';
@@ -80,8 +76,6 @@
             $auraay = ['tenk', 'boca', 'pupaja'=>'unreal'];
             kiz_yii_var_inspect($auraay);
 
-
-            //echo "\n" . $aquery->sql;
         }
         else
             echo "\n\$aquery Not Found!";

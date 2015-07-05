@@ -9,7 +9,7 @@
  */
 
     use yii\db\Query;
-    require_once('C:\xampp\htdocs\phpStorm\yii2test1\kiz\YiiHelpers.php');
+    require_once('C:\xampp\htdocs\phpStorm\yii2test1\kiz\kiz_yii.php');
 ?>
 
     <p>
