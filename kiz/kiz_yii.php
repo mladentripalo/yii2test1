@@ -41,6 +41,7 @@
         }
 
         return $n;
+        //svaki dan
     }
 
 
