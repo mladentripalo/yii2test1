@@ -33,12 +33,47 @@
     <?php
 
         // returns ActiveQuery
+
+
+        /*
         $something = Drzava::find()->joinWith(['Kontinent']);
         echo $something->className() . "\n";
-
-
         indent_print_r($something->all());
+        */
 
+        /** @var Drzava $drz; */
+        $drz = Drzava::findOne('AU');
+
+        if($drz){
+
+            YII_DEBUG && assert('$drz->className()==="app\models\Drzava"');
+
+            echo "\n" . $drz->code;
+            echo "\n" . $drz->name;
+            echo "\n" . $drz->population;
+            echo "\n" . $drz->kontinent;
+        }
+        else
+            echo "\n\$drz Not Found!";
+
+
+        /** @var ActiveQuery $aquery */
+        $aquery = Drzava::find()->joinWith(['Kontinent']);
+
+        if($aquery){
+
+            //echo "\n" . $aquery->className();
+
+            YII_DEBUG && assert('$aquery->className()==="yii\db\ActiveQuery"');
+
+            kiz_yii_var_inspect($aquery);
+
+
+
+            //echo "\n" . $aquery->sql;
+        }
+        else
+            echo "\n\$aquery Not Found!";
 
 
 

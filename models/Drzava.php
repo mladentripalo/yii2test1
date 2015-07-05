@@ -8,7 +8,7 @@
      * @property string $name
      * @property int $population
      * @property string $code
-     * @property Kontinent $kontinent
+     * @property string $kontinent
      */
     class Drzava extends ActiveRecord {
 
@@ -36,19 +36,23 @@
             return [
                 'code' => 'Kod',
                 'name' => 'Ime',
-                'population' => 'Stanovnika'
+                'population' => 'Stanovnika',
+                'kontinent' => 'Kuntinent'
             ];
         }
 
         /**
-         * @return Kontinent
+         * @return string
          */
         public function getKontinent()
         {
-            return $this->hasOne(
+            /** @var $rel Kontinent */
+            $rel = $this->hasOne(
                 Kontinent::className(),
                 ['continent_id' => 'continent_id'])
                 ->one();
+
+            return $rel->name;
         }
     }
 
