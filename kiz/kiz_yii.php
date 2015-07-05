@@ -79,7 +79,7 @@
 
             // let's match the function call and the last closing bracket
             $match = [];
-            preg_match( "#kiz_yii_var_inspect\((.+)\)#", $line, $match );
+            preg_match( "#".__FUNCTION__."\((.+)\)#", $line, $match );
             assert('count($match)>1');
 
             /* let's count brackets to see how many of them actually belongs

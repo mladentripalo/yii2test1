@@ -12,17 +12,10 @@
     Simple JQuerry clock: <span id="clk"></span>
 </p>
 
-<script>
-    $(document).ready(function () {
-        $('#clk').text((new Date()).toLocaleTimeString());
-        setInterval(
-            function(){$('#clk').text((new Date()).toLocaleTimeString())},
-            1000);
-    });
-</script>
+<h3>Example code for kiz_yii_var_inspect() function</h3>
 
-<?php
-    /** @var Drzava $drz ; */
+<pre>
+
     $drz = Drzava::findOne('HR');
     $drz && kiz_yii_var_inspect($drz);
 
@@ -42,7 +35,44 @@
     $someArray = ['tenk', 'boca', 'pupaja' => 'unreal'];
     kiz_yii_var_inspect($someArray);
 
-    kiz_yii_var_inspect($_SERVER);
+    kiz_yii_var_inspect($_REQUEST);
+</pre>
+
+    <h3>Output of above code:</h3>
+
+
+<script>
+    $(document).ready(function () {
+        $('#clk').text((new Date()).toLocaleTimeString());
+        setInterval(
+            function(){$('#clk').text((new Date()).toLocaleTimeString())},
+            1000);
+    });
+</script>
+
+<?php
+    /** @var Drzava $drz ; */
+    $drz = Drzava::findOne('HR');
+    $drz && kiz_yii_var_inspect($drz);
+
+    /** @var ActiveQuery $aquery */
+    $aquery = Drzava::find()->joinWith('Kontinent');
+    $aquery && kiz_yii_var_inspect($aquery);
+
+    $res = $aquery->one();
+    $res && kiz_yii_var_inspect($res);
+
+    $someText = 'This is a string.';
+    kiz_yii_var_inspect($someText);
+
+    $someInteger = 375;
+    kiz_yii_var_inspect($someInteger);
+
+    $someDouble = 375.44;
+    kiz_yii_var_inspect($someDouble);
+
+    $someArray = ['tenk', 'boca', 'pupaja' => 'unreal'];
+    kiz_yii_var_inspect($someArray);
 
     kiz_yii_var_inspect($_REQUEST);
 
