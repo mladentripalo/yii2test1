@@ -4,14 +4,13 @@ namespace app\models;
 
 use Yii;
 
-
 /**
  * This is the model class for table "continent".
  *
  * @property string $continent_id
  * @property string $name
  *
- * @property Country[] $countries
+ * @property Ctry[] $ctryes
  */
 class Cont extends \yii\db\ActiveRecord
 {
@@ -47,11 +46,11 @@ class Cont extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return CtryQuery
      */
-    public function getCountries()
+    public function getCtryes()
     {
-        return $this->hasMany(Country::className(), ['continent_id' => 'continent_id']);
+        return $this->hasMany(Ctry::className(), ['continent_id' => 'continent_id']);
     }
 
     /**

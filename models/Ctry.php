@@ -11,8 +11,7 @@ use Yii;
  * @property string $name
  * @property string $population
  * @property string $continent_id
- *
- * @property Continent $continent
+ * @property Cont $cont
  */
 class Ctry extends \yii\db\ActiveRecord
 {
@@ -51,11 +50,11 @@ class Ctry extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ContQuery;
      */
-    public function getContinent()
+    public function getCont()
     {
-        return $this->hasOne(Continent::className(), ['continent_id' => 'continent_id']);
+        return $this->hasOne(Cont::className(), ['continent_id' => 'continent_id']);
     }
 
     /**

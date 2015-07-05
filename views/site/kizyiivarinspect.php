@@ -1,8 +1,10 @@
 <?php
 
     use yii\web\Application;
-    use app\models\Drzava;
     use \yii\db\ActiveQuery;
+
+    use app\models\Ctry;
+    use app\models\Cont;
 
     /** @noinspection PhpIncludeInspection */
     require_once \Yii::$app->basePath . '\kiz\kiz_yii.php';
@@ -51,12 +53,12 @@
 </script>
 
 <?php
-    /** @var Drzava $drz ; */
-    $drz = Drzava::findOne('HR');
+    /** @var Ctry $drz ; */
+    $drz = Ctry::findOne('HR');
     $drz && kiz_yii_var_inspect($drz);
 
     /** @var ActiveQuery $aquery */
-    $aquery = Drzava::find()->joinWith('Kontinent');
+    $aquery = Ctry::find()->joinWith('cont');
     $aquery && kiz_yii_var_inspect($aquery);
 
     $res = $aquery->one();
