@@ -53,6 +53,6 @@ class Country extends \yii\db\ActiveRecord
      */
     public function getContinent()
     {
-        return $this->hasOne(Country::className(), ['continent_id' => 'continent_id']);
+        return $this->hasOne(Continent::className(), ['continent_id' => 'continent_id']);
     }
 }

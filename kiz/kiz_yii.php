@@ -45,11 +45,16 @@
     }
 
 
-    // do not change function name!
+    /**
+     * @param $label
+     * @param string $val RESERVED, do not use!
+     * @return string $string to be output on screen in html format
+     */
     function kiz_yii_var_inspect($label, $val = '__undefin_e_d__')
     {
+        $out = '';
         if(!defined('YII_DEBUG') || !YII_DEBUG || !function_exists('debug_backtrace'))
-            return;
+            return '';
 
         if($val == '__undefin_e_d__') {
 
@@ -100,11 +105,12 @@
 
             $fil = substr($bt[0]["file"],strlen(\Yii::$app->basePath)+1);
 
+            ob_start();
             echo '<pre><span style="color: #00209f">';
             echo '*** kiz_yii_var_inspect() *** <span style="color: #f30008;font-weight: bolder">', $label, '</span> ';
             echo '<em>',($typ=gettype($val)),'</em> ';
             echo $typ=='object' ? '('.get_class($val).') ' : '' ;
-            echo 'in <strong>',$fil,'</strong>:',$bt[0]['line'],"\n";
+            echo 'in <strong>',$fil,'</strong>:',$bt[0]['line'],'</br>';
 
             switch($typ) {
                 case 'array':
@@ -125,6 +131,42 @@
 
             echo '</span></pre>';
         }
+
+        $out = ob_get_contents();
+        ob_end_clean();
+        return $out;
+    }
+
+    $___pre_code_start_marker = '';
+    function ___pre_code_start() {global $___pre_code_start_marker ; $___pre_code_start_marker=__FUNCTION__;}
+    function ___pre_code_end() {
+        global $___pre_code_start_marker;
+        $out = '';
+
+        if(!empty($___pre_code_start_marker) && !defined('YII_DEBUG') || !YII_DEBUG || !function_exists('debug_backtrace'))
+            return '';
+
+        $bt = debug_backtrace();
+
+        assert('$bt');
+        assert('isset($bt[0]["file"])');
+        assert('!empty($bt[0]["file"])');
+        assert('isset($bt[0]["line"])');
+        assert('is_int($bt[0]["line"])');
+
+        $line = $bt[0]["line"]-2;
+        $file = file($bt[0]["file"]);
+        assert('$file');
+
+        $out = '</code></pre>';
+
+        while($line>=0 && !strstr($file[$line],$___pre_code_start_marker))
+            $out = htmlspecialchars($file[$line--]) . $out;
+
+        $out = '<pre><code>' . $out;
+
+        $___pre_code_start_marker = '';
+        return $out;
     }
 
 

@@ -7,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "continent".
  *
- * @property string $continent_id
+ * @property int $continent_id
  * @property string $name
  *
  * @property Country[] $countries

@@ -7,39 +7,6 @@
     require_once \Yii::$app->basePath . '\kiz\kiz_yii.php';
 ?>
 
-<p>
-    Simple JQuerry clock: <span id="clk"></span>
-</p>
-
-<h3>Example code for kiz_yii_var_inspect() function</h3>
-
-<pre>
-
-    $drz = Drzava::findOne('HR');
-    $drz && kiz_yii_var_inspect($drz);
-
-    /** @var ActiveQuery $aquery */
-    $aquery = Drzava::find()->joinWith(['Kontinent']);
-    $aquery && kiz_yii_var_inspect($aquery);
-
-    $someText = 'Kopa kabana!';
-    kiz_yii_var_inspect($someText);
-
-    $someInteger = 375;
-    kiz_yii_var_inspect($someInteger);
-
-    $someDouble = 375.44;
-    kiz_yii_var_inspect($someDouble);
-
-    $someArray = ['tenk', 'boca', 'pupaja' => 'unreal'];
-    kiz_yii_var_inspect($someArray);
-
-    kiz_yii_var_inspect($_REQUEST);
-</pre>
-
-    <h3>Output of above code:</h3>
-
-
 <script>
     $(document).ready(function () {
         $('#clk').text((new Date()).toLocaleTimeString());
@@ -49,30 +16,57 @@
     });
 </script>
 
+<p>
+    Simple JQuerry clock: <span id="clk"></span>
+</p>
+
+<h3>Example code for kiz_yii_var_inspect() function</h3>
+
 <?php
-    /** @var Ctry $drz ; */
-    $drz = Ctry::findOne('HR');
-    $drz && kiz_yii_var_inspect($drz);
 
-    /** @var ActiveQuery $aquery */
-    $aquery = Ctry::find()->joinWith('cont');
-    $aquery && kiz_yii_var_inspect($aquery);
+    ___pre_code_start();
+    $drz = \app\models\Country::findOne('HR');      /** @var \app\models\Country $drz ; */
+    echo ___pre_code_end();
+    echo kiz_yii_var_inspect($drz);
+    echo '</br>';
 
-    $res = $aquery->one();
-    $res && kiz_yii_var_inspect($res);
+    ___pre_code_start();
+    $cont = $drz->getContinent();
+    echo ___pre_code_end();
+    echo kiz_yii_var_inspect($cont);
+    echo '</br>';
+
+    //$cont->joinWith('continent');
+
+    $contOne = $cont->one();
+    $contOne && print kiz_yii_var_inspect($contOne);
+
+
+    /*
+    $dataprovider = new \yii\data\ActiveDataProvider(['query',$cont]);
+    $dataprovider && kiz_yii_var_inspect($dataprovider);
+    */
+
+
+    echo '</br>';
+    echo '</br>';
+
 
     $someText = 'This is a string.';
-    kiz_yii_var_inspect($someText);
+    print kiz_yii_var_inspect($someText);
 
     $someInteger = 375;
-    kiz_yii_var_inspect($someInteger);
+    print kiz_yii_var_inspect($someInteger);
 
     $someDouble = 375.44;
-    kiz_yii_var_inspect($someDouble);
+    print kiz_yii_var_inspect($someDouble);
 
     $someArray = ['tenk', 'boca', 'pupaja' => 'unreal'];
-    kiz_yii_var_inspect($someArray);
+    print kiz_yii_var_inspect($someArray);
 
-    kiz_yii_var_inspect($_REQUEST);
+    print kiz_yii_var_inspect($_REQUEST);
 
 ?>
+
+
+
