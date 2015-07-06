@@ -155,29 +155,46 @@
         assert('is_int($bt[0]["line"])');
 
         $line = $bt[0]["line"]-2;
-        $file = file($bt[0]["file"]);
+        $file = file($bt[0]["file"],FILE_IGNORE_NEW_LINES);
         assert('$file');
 
-        //$out = '</code></pre>';
+        $out = '';
 
         while($line>=0 && !strstr($file[$line],$___pre_code_start_marker))
-            $out = $file[$line--] . $out;
+            $out = $file[$line--] . "\n" . $out;
 
-        //$out = '<pre><code>' . $out;
+        $out = substr($out,0,strrpos($out,"\n"));
 
         $___pre_code_start_marker = '';
-
-
         if(function_exists('highlight_string')){
-            $token = 'fjherkrt73fIttR';
-            $out = highlight_string('<?php'."\n".$token."\n".$out."\n".$token."\n".'?>' ,true);
-            return $out;
 
+            ini_set('highlight.string','#028102');
+            ini_set('highlight.comment','#818181');
+            ini_set('highlight.keyword','#0265D7');
+            ini_set('highlight.bg','#B1B1B1');
+            ini_set('highlight.default','#000000');
+            ini_set('highlight.html','#670202');
+
+            $out = highlight_string('<?php '.$out.' ?>' ,true);
+
+            ini_restore('highlight.string');
+            ini_restore('highlight.comment');
+            ini_restore('highlight.keyword');
+            ini_restore('highlight.bg');
+            ini_restore('highlight.default');
+            ini_restore('highlight.html');
+
+            $newcodestyle = '<code style="display: block; padding: 9px; margin: 0 0 10px; font-size: 13px; line-height: 1.42857143; color: #333; word-break: break-all; word-wrap: break-word; background-color: #f5f5f5; border: 1px solid #ccc; border-radius: 4px;">';
+
+            mb_regex_encoding('UTF-8');
+            $out = mb_eregi_replace('\&lt\;\?php\&nbsp\;', '', $out);
+            $out = mb_eregi_replace('<code>', $newcodestyle, $out);
+            $out = mb_substr($out,0,mb_strrpos($out,'<span')) . '</span></code>';
+
+
+
+            return $out;
         }
         else
             return '<pre><code>'.htmlspecialchars($out).'</code></pre>';
-
-        /*
-        highlight_string('<?php'.$out.'?>' ,true)
-        */
     }

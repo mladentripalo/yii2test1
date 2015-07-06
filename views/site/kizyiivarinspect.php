@@ -8,9 +8,6 @@
     require_once \Yii::$app->basePath . '\kiz\kiz_yii.php';
 ?>
 
-
-<?php ___pre_code_start(); ?>
-
 <script>
     $(document).ready(function () {
         $('#clk').text((new Date()).toLocaleTimeString());
@@ -26,12 +23,12 @@
 
 <h3>Example code for kiz_yii_var_inspect() function</h3>
 
-<?= ___pre_code_end() ?>
-
 <?php
 
     ___pre_code_start();
+    // comment before
     $drz = \app\models\Country::findOne('HR');      /** @var \app\models\Country $drz ; */
+    // comment after
     echo ___pre_code_end();
     echo kiz_yii_var_inspect($drz);
     echo kiz_yii_var_inspect($drz->continent_name);
