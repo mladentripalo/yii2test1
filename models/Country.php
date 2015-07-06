@@ -9,11 +9,10 @@ use Yii;
  *
  * @property string $code
  * @property string $name
- * @property string $population
- * @property string $continent_id
- * @property Cont $cont
+ * @property int $population
+ * @property int $continent_id
  */
-class Ctry extends \yii\db\ActiveRecord
+class Country extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -50,19 +49,10 @@ class Ctry extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return ContQuery;
+     * @return \yii\db\ActiveQuery
      */
-    public function getCont()
+    public function getContinent()
     {
-        return $this->hasOne(Cont::className(), ['continent_id' => 'continent_id']);
-    }
-
-    /**
-     * @inheritdoc
-     * @return CtryQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new CtryQuery(get_called_class());
+        return $this->hasOne(Country::className(), ['continent_id' => 'continent_id']);
     }
 }

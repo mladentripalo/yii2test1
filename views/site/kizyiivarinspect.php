@@ -3,9 +3,6 @@
     use yii\web\Application;
     use \yii\db\ActiveQuery;
 
-    use app\models\Ctry;
-    use app\models\Cont;
-
     /** @noinspection PhpIncludeInspection */
     require_once \Yii::$app->basePath . '\kiz\kiz_yii.php';
 ?>
