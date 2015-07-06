@@ -28,18 +28,23 @@
     $drz = \app\models\Country::findOne('HR');      /** @var \app\models\Country $drz ; */
     echo ___pre_code_end();
     echo kiz_yii_var_inspect($drz);
+    echo kiz_yii_var_inspect($drz->continent_name);
+    echo kiz_yii_var_inspect($drz->attributeLabels());
     echo '</br>';
 
     ___pre_code_start();
-    $cont = $drz->getContinent();
+    $cont = $drz->getContinent()->one();
     echo ___pre_code_end();
     echo kiz_yii_var_inspect($cont);
     echo '</br>';
 
-    //$cont->joinWith('continent');
-
+    /*
+    ___pre_code_start();
     $contOne = $cont->one();
-    $contOne && print kiz_yii_var_inspect($contOne);
+    echo ___pre_code_end();
+    echo kiz_yii_var_inspect($contOne);
+    echo '</br>';
+    */
 
 
     /*
@@ -50,7 +55,6 @@
 
     echo '</br>';
     echo '</br>';
-
 
     $someText = 'This is a string.';
     print kiz_yii_var_inspect($someText);
