@@ -158,16 +158,26 @@
         $file = file($bt[0]["file"]);
         assert('$file');
 
-        $out = '</code></pre>';
+        //$out = '</code></pre>';
 
         while($line>=0 && !strstr($file[$line],$___pre_code_start_marker))
-            $out = htmlspecialchars($file[$line--]) . $out;
+            $out = $file[$line--] . $out;
 
-        $out = '<pre><code>' . $out;
+        //$out = '<pre><code>' . $out;
 
         $___pre_code_start_marker = '';
-        return $out;
+
+
+        if(function_exists('highlight_string')){
+            $token = 'fjherkrt73fIttR';
+            $out = highlight_string('<?php'."\n".$token."\n".$out."\n".$token."\n".'?>' ,true);
+            return $out;
+
+        }
+        else
+            return '<pre><code>'.htmlspecialchars($out).'</code></pre>';
+
+        /*
+        highlight_string('<?php'.$out.'?>' ,true)
+        */
     }
-
-
-

@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use tests\codeception\_pages\AboutPage;
 use Yii;
 
 /**
@@ -63,5 +64,7 @@ class Country extends \yii\db\ActiveRecord
         $cont = $this->getContinent()->one();
         return $cont->name;
     }
+
+
 
 }

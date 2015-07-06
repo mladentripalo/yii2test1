@@ -1,11 +1,15 @@
 <?php
 
+
     use yii\web\Application;
     use \yii\db\ActiveQuery;
 
     /** @noinspection PhpIncludeInspection */
     require_once \Yii::$app->basePath . '\kiz\kiz_yii.php';
 ?>
+
+
+<?php ___pre_code_start(); ?>
 
 <script>
     $(document).ready(function () {
@@ -21,6 +25,8 @@
 </p>
 
 <h3>Example code for kiz_yii_var_inspect() function</h3>
+
+<?= ___pre_code_end() ?>
 
 <?php
 
