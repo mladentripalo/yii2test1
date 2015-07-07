@@ -1,5 +1,8 @@
 <?php
-
+    /**
+     * TODO: in entire file: replace all regular ASCII
+     * string functions with mb_ counterpart because of possible UTF-8 strings
+    */
 
     function indent_print_r($collection, $prefix="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;") {
 
@@ -191,17 +194,8 @@
             $out = mb_eregi_replace('<code>', $newcodestyle, $out);
             $out = mb_substr($out,0,mb_strrpos($out,'<span')) . '</span></code>';
 
-            $out =
-                mb_ereg_replace_callback(
-                    '\$\w+',
-                    function($a){
-
-
-                    },
-                    $out
-                    );
-
-
+            // additionally color variables ... TODO: remove coloring of variables in comments :)
+            $out = mb_ereg_replace('(\$+\w+)','<span style="color: #670202;">\1</span>',$out);
 
             return $out;
         }
