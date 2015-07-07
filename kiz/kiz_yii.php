@@ -1,50 +1,37 @@
 <?php
     /**
      * TODO: in entire file: replace all regular ASCII
-     * string functions with mb_ counterpart because of possible UTF-8 strings
+     * string functions with utf8 counterpart because of possible UTF-8 strings
     */
 
-    function indent_print_r($collection, $prefix="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;") {
-
+    function indent_print_r($collection, $prefix="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
+    {
         $n=0;
-
         foreach ($collection as $k => $v) {
-
             echo '</br>';
-
             $n++;
             $ty = gettype($v);
             echo $prefix, '<strong>', $k, '</strong>: <em>', $ty, '</em> ', is_object($v) ? '('.get_class($v).')' : '';
-
             if( $ty=='array' ){
-                if(count($v)) {
+                if(count($v))
                     indent_print_r($v, $prefix . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
-                }
-                else {
+                else
                     echo '[empty]';
-                }
             }
             elseif ( $ty=='object' ){
-                if(!indent_print_r($v, $prefix . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")) {
+                if(!indent_print_r($v, $prefix . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"))
                     echo '[empty]';
-                }
             }
-            elseif ( $ty=='string' ){
+            elseif ( $ty=='string' )
                 echo '"',htmlspecialchars($v),'"';
-            }
-            elseif ( $ty=='boolean' ){
+            elseif ( $ty=='boolean' )
                 echo $v ? 'TRUE' : 'FALSE';
-            }
-            elseif(is_scalar($v) || $v===null) {
+            elseif(is_scalar($v) || $v===null)
                 echo htmlspecialchars(''.$v);
-            }
-            else {
+            else
                 echo 'Unknown unprintable variable type!';
-            }
         }
-
         return $n;
-        //svaki dan
     }
 
 
@@ -226,17 +213,15 @@
                 $ml = preg_replace('# #','&nbsp;',$ml);
                 $code = preg_replace("#$mlc2#", nl2br($ml), $code, 1);
             }
-
             return $code;
         }
         else
             return '<pre><code>'.htmlspecialchars($code).'</code></pre>';
-
     }
 
     /**
-     * @param string $str ASCII or binary string
-     * @return string containing formatted hexdump
+     * @param string $str binary string
+     * @return string containing HTML formatted hexdump
      */
     function hexdump($str) {
 
