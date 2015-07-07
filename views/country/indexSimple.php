@@ -26,7 +26,6 @@
 
 <?php
     ob_start();
-    echo '<ul>';
     ___pre_code_start();
     /**
      * action CountryController::actionIndexSimple()
@@ -37,6 +36,7 @@
      *                    ->limit($pagination->limit)
      *                    ->all();
     */
+    echo '<ul>';
     foreach ($countries as $c)
         echo
             '<li>' ,
@@ -50,6 +50,11 @@
     $output = ob_get_contents();
     ob_end_clean();
     echo $code, $output;
+
+    echo kiz_yii_var_inspect($countries);
+    echo kiz_yii_var_inspect($pagination);
+
+
 ?>
 
 

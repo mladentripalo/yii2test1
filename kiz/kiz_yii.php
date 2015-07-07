@@ -191,6 +191,16 @@
             $out = mb_eregi_replace('<code>', $newcodestyle, $out);
             $out = mb_substr($out,0,mb_strrpos($out,'<span')) . '</span></code>';
 
+            $out =
+                mb_ereg_replace_callback(
+                    '\$\w+',
+                    function($a){
+
+
+                    },
+                    $out
+                    );
+
 
 
             return $out;
