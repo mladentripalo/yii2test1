@@ -82,33 +82,15 @@
         }
     }";
 
-    $match = [];
 
+    $slc = '//_SLC_G2454kII905dhTsE_';
+    $mlc = '/*_MLC_255RrT79712w0R_*/';
+    $unformattedCode = preg_replace('#(*UTF8)(\/\/.*?)(?=[\n\r])#',$slc,$unformattedCode);
+    $unformattedCode = preg_replace('#(*UTF8)(\/\*.*?\*\/)#s',$mlc,$unformattedCode);
 
+    $code = kiz_php_code2thml($unformattedCode);
 
-    //mb_ereg_search_init($unformattedCode,'(\/\/.*?(?=\n))','b');
-    //mb_ereg_search('(\/\/.*?(?=\n))','xd');
-    //mb_ereg_search('(\/\/.*?(?=\n))','mj');
-
-    //preg_match_all('#\/\/.*?(?=[])#',$unformattedCode,$match);
-
-
-    //preg_match_all('#(\/\/.*?)(?=\x0D|\x0A)#',$unformattedCode,$match);
-
-    //preg_match_all('#(\/\/.*?)(?=[\x0A\x0D])#',$unformattedCode,$match);
-
-    preg_match_all('#(*UTF8)(\/\/.*?)(?=[\n\r])#',$unformattedCode,$match);
-    echo kiz_yii_var_inspect($match);
-    preg_match_all('#(*UTF8)(\/\*.*?\*\/)#s',$unformattedCode,$match);
-    echo kiz_yii_var_inspect($match);
-
-
-    echo '<pre>';
-    echo preg_replace('#(*UTF8)(\/\/.*?)(?=[\n\r])#','___single_line_comment___',$unformattedCode);
-    echo '</pre>';
-    echo '<pre>';
-    echo preg_replace('#(*UTF8)(\/\*.*?\*\/)#s','___multi_line_comment___',$unformattedCode);
-    echo '</pre>';
+    echo $code;
 
     //kiz_php_code2thml($unformattedCode);
 
