@@ -10,15 +10,27 @@
      * @var $this yii\web\View
      * @var \app\models\Country [] $countries
      * @var yii\data\Pagination $pagination
+     * @var \yii\db\ActiveQuery $query
      */
 
 ?>
+
+<style>
+    .codeLine_kiz {
+        font-family: monospace;
+        font-style: italic;
+        color: #0202ff; }
+    .redBold_kiz {
+        font-weight: bold;
+        color: red; }
+</style>
+
 
 <h2>Countries</h2>
 <p>
     See code comment how countries are prepared, pagination object is also prepared in
     controller action and passed here into view...<br>
-    Country::find() first create ActiveQuery instance which, when executed with ->all() returns an array of
+    <span class="codeLine_kiz"></span> Country::find() first create ActiveQuery instance which, when executed with ->all() returns an array of
     app\models\Country (ActiveRecord classes). <br>
     Before ->all() is called on querry (which actually executes SQL statement and gets data) it is
     possible to link-pass options to query as seen here using ->offset() and ->limit().
@@ -50,11 +62,41 @@
     $output = ob_get_contents();
     ob_end_clean();
     echo $code, $output;
+?>
 
+<p>
+    Note that <span class="codeLine_kiz">$c->continent_name</span> is pulled from other table trough foreign key.
+    This is a <strong>BAD</strong> practice because it is actually a function named
+    Country::getContinent_name() which runs a query of its own in order to return
+    continent name from continent table...
+</p>
+    <?= kiz_php_code2thml(
+"        class Country extends ActiveRecord {
+        /** @return \\yii\\db\\ActiveQuery */
+        public function getContinent() {
+            return \$this->hasOne(Continent::className(), ['continent_id' => 'continent_id']);
+        }
+        /** @return string */
+        public function getContinent_name(){
+            /** @var Continent \$cont */
+            \$cont = \$this->getContinent()->one();
+            return \$cont->name;
+        }
+    }");
+    ?>
+<p>
+    This may be a covinient way but a subquery has to be called once per foreach loop
+    which is <strong>not efficient</strong> for big data. <br/> Much better way would be
+</p>
+
+
+<?php
     echo kiz_yii_var_inspect($countries);
     echo kiz_yii_var_inspect($pagination);
-
-
+    echo kiz_yii_var_inspect($query);
 ?>
+
+
+
 
 

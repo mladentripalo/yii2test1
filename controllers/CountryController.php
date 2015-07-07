@@ -25,6 +25,7 @@ class CountryController extends \yii\web\Controller
         return $this->render('indexSimple', [
                 'countries' => $countries,
                 'pagination' => $pagination,
+                'query' => $query
         ]);
     }
 

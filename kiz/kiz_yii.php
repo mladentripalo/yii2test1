@@ -169,6 +169,14 @@
         $out = substr($out,0,strrpos($out,"\n"));
 
         $___pre_code_start_marker = '';
+        return kiz_php_code2thml($out);
+    }
+
+    /**
+     * @param $code string
+     * @return string
+     */
+    function kiz_php_code2thml($code) {
         if(function_exists('highlight_string')){
 
             ini_set('highlight.string','#028102');
@@ -178,7 +186,7 @@
             ini_set('highlight.default','#000000');
             ini_set('highlight.html','#670202');
 
-            $out = highlight_string('<?php '.$out.' ?>' ,true);
+            $code = highlight_string('<?php '.$code.' ?>' ,true);
 
             ini_restore('highlight.string');
             ini_restore('highlight.comment');
@@ -190,15 +198,16 @@
             $newcodestyle = '<code style="display: block; padding: 9px; margin: 0 0 10px; font-size: 13px; line-height: 1.42857143; color: #333; word-break: break-all; word-wrap: break-word; background-color: #f5f5f5; border: 1px solid #ccc; border-radius: 4px;">';
 
             mb_regex_encoding('UTF-8');
-            $out = mb_eregi_replace('\&lt\;\?php\&nbsp\;', '', $out);
-            $out = mb_eregi_replace('<code>', $newcodestyle, $out);
-            $out = mb_substr($out,0,mb_strrpos($out,'<span')) . '</span></code>';
+            $code = mb_eregi_replace('\&lt\;\?php\&nbsp\;', '', $code);
+            $code = mb_eregi_replace('<code>', $newcodestyle, $code);
+            $code = mb_substr($code,0,mb_strrpos($code,'<span')) . '</span></code>';
 
             // additionally color variables ... TODO: remove coloring of variables in comments :)
-            $out = mb_ereg_replace('(\$+\w+)','<span style="color: #670202;">\1</span>',$out);
+            $code = mb_ereg_replace('(\$+\w+)','<span style="color: #670202;">\1</span>',$code);
 
-            return $out;
+            return $code;
         }
         else
-            return '<pre><code>'.htmlspecialchars($out).'</code></pre>';
+            return '<pre><code>'.htmlspecialchars($code).'</code></pre>';
+
     }

@@ -1,0 +1,9 @@
+.kcodeline {
+    font-family: monospace;
+    font-style: italic;
+    color: #0202ff;
+}
+.kredbold {
+    font-weight: bold;
+    color: red;
+}
