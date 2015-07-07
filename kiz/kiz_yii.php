@@ -182,6 +182,14 @@
     function kiz_php_code2thml($code) {
         if(function_exists('highlight_string')){
 
+            preg_match_all('#(*UTF8)(\/\/.*?)(?=[\n\r])#',$code,$asin);
+            preg_match_all('#(*UTF8)(\/\*.*?\*\/)#s',$code,$amul);
+
+            $slc = '//_SLC_G2454kII905dhTsE_';
+            $mlc = '/*_MLC_255RrT79712w0R_*/';
+            $code = preg_replace('#(*UTF8)(\/\/.*?)(?=[\n\r])#',$slc,$code);
+            $code = preg_replace('#(*UTF8)(\/\*.*?\*\/)#s',$mlc,$code);
+
             ini_set('highlight.string','#028102');
             ini_set('highlight.comment','#818181');
             ini_set('highlight.keyword','#0265D7');
@@ -205,8 +213,19 @@
             $code = mb_eregi_replace('<code>', $newcodestyle, $code);
             $code = mb_substr($code,0,mb_strrpos($code,'<span')) . '</span></code>';
 
-            // additionally color variables ... TODO: remove coloring of variables in comments :)
+            // additionally color variables
             $code = mb_ereg_replace('(\$+\w+)','<span style="color: #670202;">\1</span>',$code);
+
+            // restore comments
+            foreach ($asin[0] as $sl) {
+                $sl = preg_replace('# #','&nbsp;',$sl);
+                $code = preg_replace("#$slc#", $sl, $code, 1);
+            }
+            $mlc2=preg_replace('#\*#','\*',$mlc);
+            foreach ($amul[0] as $ml) {
+                $ml = preg_replace('# #','&nbsp;',$ml);
+                $code = preg_replace("#$mlc2#", nl2br($ml), $code, 1);
+            }
 
             return $code;
         }
