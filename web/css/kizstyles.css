@@ -1,9 +1,7 @@
-.kcodeline {
+.codeLine_kiz {
     font-family: monospace;
     font-style: italic;
-    color: #0202ff;
-}
-.kredbold {
+    color: #0202ff; }
+.redBold_kiz {
     font-weight: bold;
-    color: red;
-}
+    color: red; }
