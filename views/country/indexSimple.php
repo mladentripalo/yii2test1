@@ -62,62 +62,49 @@
 
 
 <?php
-    $unformattedCode =
+    $origCode =
         "        class Country extends ActiveRecord {
+
         /** @return \\yii\\db\\ActiveQuery */
         public function getContinent() {
-            return \$this->hasOne(Continent::className(), ['continent_id' => 'continent_id']); //tu je negdi
+            return \$this->hasOne(Continent::className(), ['continent_id' => 'continent_id']);
         }
 
-        /**
-        *
-        * penzija skoro
-        */
-
         /** @return string */
-        public function getContinent_name(){ //papaja je
+        public function getContinent_name(){
             /** @var Continent \$cont */
-            \$cont = \$this->getContinent()->one(); // nikad nisam ja!!
+            \$cont = \$this->getContinent()->one();
             return \$cont->name;
         }
     }";
 
+    echo kiz_php_code2thml($origCode);
 
-    $slc = '//_SLC_G2454kII905dhTsE_';
-    $mlc = '/*_MLC_255RrT79712w0R_*/';
-    $unformattedCode = preg_replace('#(*UTF8)(\/\/.*?)(?=[\n\r])#',$slc,$unformattedCode);
+    /*
+    preg_match_all('#(*UTF8)(\/\/.*?)(?=[\n\r])#',$origCode,$asin);
+    echo kiz_yii_var_inspect($asin);
+    preg_match_all('#(*UTF8)(\/\*.*?\*\/)#s',$origCode,$amul);
+    echo kiz_yii_var_inspect($amul);
+    */
+    //$slc = '//_SLC_G2454kII905dhTsE_';
+    //$mlc = '/*_MLC_255RrT79712w0R_*/';
+    /*
+    $unformattedCode = preg_replace('#(*UTF8)(\/\/.*?)(?=[\n\r])#',$slc,$origCode);
     $unformattedCode = preg_replace('#(*UTF8)(\/\*.*?\*\/)#s',$mlc,$unformattedCode);
-
     $code = kiz_php_code2thml($unformattedCode);
-
     echo $code;
-
-    //kiz_php_code2thml($unformattedCode);
-
-    /*
-    foreach ($match[0] as $m) {
-        $arr[] = str_replace(chr(0x0D),'',$m);
+    $reformCode = $code;
+    foreach ($asin[0] as $sl) {
+        $sl = preg_replace('# #','&nbsp;',$sl);
+        $reformCode = preg_replace("#$slc#", $sl, $reformCode, 1);
     }
-    echo kiz_yii_var_inspect($arr);
+    $mlc2=preg_replace('#\*#','\*',$mlc);
+    foreach ($amul[0] as $ml) {
+        $ml = preg_replace('# #','&nbsp;',$ml);
+        $reformCode = preg_replace("#$mlc2#", nl2br($ml), $reformCode, 1);
+    }
+    echo $reformCode;
     */
-
-    //echo hexdump("\\r\\n \r \n");
-
-
-
-
-
-
-    /*
-    mbregex_encoding('UTF-8');
-    mb_regex_set_options('gmd');
-    mb_ereg('(\/\/.*?(?=\n))',$unformattedCode,$match);
-    echo kiz_yii_var_inspect($match);
-    */
-
-
-    kiz_php_code2thml($unformattedCode);
-
 ?>
 
 
