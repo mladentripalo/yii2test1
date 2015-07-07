@@ -59,26 +59,91 @@
     <span class="codeLine_kiz">Country::getContinent_name()</span> which runs a query of its own in order to return
     continent name from continent table...
 </p>
-    <?= kiz_php_code2thml(
-"        class Country extends ActiveRecord {
+
+
+<?php
+    $unformattedCode =
+        "        class Country extends ActiveRecord {
         /** @return \\yii\\db\\ActiveQuery */
         public function getContinent() {
-            return \$this->hasOne(Continent::className(), ['continent_id' => 'continent_id']);
+            return \$this->hasOne(Continent::className(), ['continent_id' => 'continent_id']); //tu je negdi
         }
+
+        /**
+        *
+        * penzija skoro
+        */
+
         /** @return string */
-        public function getContinent_name(){
+        public function getContinent_name(){ //papaja je
             /** @var Continent \$cont */
-            \$cont = \$this->getContinent()->one();
+            \$cont = \$this->getContinent()->one(); // nikad nisam ja!!
             return \$cont->name;
         }
-    }");
-    ?>
+    }";
+
+    $match = [];
+
+
+
+    //mb_ereg_search_init($unformattedCode,'(\/\/.*?(?=\n))','b');
+    //mb_ereg_search('(\/\/.*?(?=\n))','xd');
+    //mb_ereg_search('(\/\/.*?(?=\n))','mj');
+
+    //preg_match_all('#\/\/.*?(?=[])#',$unformattedCode,$match);
+
+
+    //preg_match_all('#(\/\/.*?)(?=\x0D|\x0A)#',$unformattedCode,$match);
+
+    //preg_match_all('#(\/\/.*?)(?=[\x0A\x0D])#',$unformattedCode,$match);
+
+    preg_match_all('#(*UTF8)(\/\/.*?)(?=[\n\r])#',$unformattedCode,$match);
+    echo kiz_yii_var_inspect($match);
+    preg_match_all('#(*UTF8)(\/\*.*?\*\/)#s',$unformattedCode,$match);
+    echo kiz_yii_var_inspect($match);
+
+
+    echo '<pre>';
+    echo preg_replace('#(*UTF8)(\/\/.*?)(?=[\n\r])#','___single_line_comment___',$unformattedCode);
+    echo '</pre>';
+    echo '<pre>';
+    echo preg_replace('#(*UTF8)(\/\*.*?\*\/)#s','___multi_line_comment___',$unformattedCode);
+    echo '</pre>';
+
+    //kiz_php_code2thml($unformattedCode);
+
+    /*
+    foreach ($match[0] as $m) {
+        $arr[] = str_replace(chr(0x0D),'',$m);
+    }
+    echo kiz_yii_var_inspect($arr);
+    */
+
+    //echo hexdump("\\r\\n \r \n");
+
+
+
+
+
+
+    /*
+    mbregex_encoding('UTF-8');
+    mb_regex_set_options('gmd');
+    mb_ereg('(\/\/.*?(?=\n))',$unformattedCode,$match);
+    echo kiz_yii_var_inspect($match);
+    */
+
+
+    kiz_php_code2thml($unformattedCode);
+
+?>
+
+
 <p>
     This may be a covinient way but a subquery has to be called once per foreach loop
     which is <span class="redBold_kiz">not efficient</span> for big data. Much better way would be
     to let SQL engine join this data in one single query...
 </p>
-
 
 <?php
     /*

@@ -173,7 +173,10 @@
     }
 
     /**
-     * @param $code string
+     * returns syntax highlighted HTML UTF-8 multi-line string
+     * colored with in-place spans with style. It doesnt depend on any stylesheet and can be used in any
+     * HTML page.
+     * @param $code string PHP code
      * @return string
      */
     function kiz_php_code2thml($code) {
@@ -211,3 +214,31 @@
             return '<pre><code>'.htmlspecialchars($code).'</code></pre>';
 
     }
+
+    /**
+     * @param string $str ASCII or binary string
+     * @return string containing formatted hexdump
+     */
+    function hexdump($str) {
+
+        if(!is_string($str) || empty($str))
+            return '';
+
+        $l = strlen($str);
+        $i = 0;
+        $c = '';
+        $out = '';
+
+        $out .= '<pre>';
+        while($i<$l) {
+            $out .= $i%16 ? ' ' : '  '.$c."\n".($c='');
+            $out .= sprintf("%02X", $cp=ord($str{$i++}));
+            $c .= $cp>31 && $cp<127 ? "&#$cp" : '·';
+        }
+        if(!empty($c))
+            $out .= str_repeat('   ',15-(($i-1)%16)).'  '.$c;
+        $out .= '</pre>';
+
+        return $out;
+    }
+
