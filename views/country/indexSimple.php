@@ -26,9 +26,11 @@
 </p>
 
 <?php
+    /*
     ob_start();
     ___pre_code_start();
-    /**
+
+    **
      * action CountryController::actionIndexSimple()
      * contains following relevent code:
      * $query = Country::find();
@@ -36,7 +38,7 @@
      *                    ->offset($pagination->offset)
      *                    ->limit($pagination->limit)
      *                    ->all();
-    */
+    *
     echo '<ul>';
     foreach ($countries as $c)
         echo
@@ -51,6 +53,7 @@
     $output = ob_get_contents();
     ob_end_clean();
     echo $code, $output;
+    */
 ?>
 
 <p>
@@ -62,8 +65,8 @@
 
 
 <?php
-    $origCode =
-        "        class Country extends ActiveRecord {
+    echo  kiz_php_code2thml(
+"        class Country extends ActiveRecord {
 
         /** @return \\yii\\db\\ActiveQuery */
         public function getContinent() {
@@ -76,35 +79,9 @@
             \$cont = \$this->getContinent()->one();
             return \$cont->name;
         }
-    }";
+    }");
 
-    echo kiz_php_code2thml($origCode);
 
-    /*
-    preg_match_all('#(*UTF8)(\/\/.*?)(?=[\n\r])#',$origCode,$asin);
-    echo kiz_yii_var_inspect($asin);
-    preg_match_all('#(*UTF8)(\/\*.*?\*\/)#s',$origCode,$amul);
-    echo kiz_yii_var_inspect($amul);
-    */
-    //$slc = '//_SLC_G2454kII905dhTsE_';
-    //$mlc = '/*_MLC_255RrT79712w0R_*/';
-    /*
-    $unformattedCode = preg_replace('#(*UTF8)(\/\/.*?)(?=[\n\r])#',$slc,$origCode);
-    $unformattedCode = preg_replace('#(*UTF8)(\/\*.*?\*\/)#s',$mlc,$unformattedCode);
-    $code = kiz_php_code2thml($unformattedCode);
-    echo $code;
-    $reformCode = $code;
-    foreach ($asin[0] as $sl) {
-        $sl = preg_replace('# #','&nbsp;',$sl);
-        $reformCode = preg_replace("#$slc#", $sl, $reformCode, 1);
-    }
-    $mlc2=preg_replace('#\*#','\*',$mlc);
-    foreach ($amul[0] as $ml) {
-        $ml = preg_replace('# #','&nbsp;',$ml);
-        $reformCode = preg_replace("#$mlc2#", nl2br($ml), $reformCode, 1);
-    }
-    echo $reformCode;
-    */
 ?>
 
 
@@ -115,11 +92,43 @@
 </p>
 
 <?php
-    /*
-    echo kiz_yii_var_inspect($countries);
-    echo kiz_yii_var_inspect($pagination);
+
+    $query = (new \yii\db\Query())
+        ->select([
+                'country_name'=>'country.name',
+                'country_code'=>'country.code',
+                'total_population'=>'country.population',
+                'continent_name'=>'continent.name'])
+        ->from('country')
+        ->leftJoin('continent','country.continent_id=continent.continent_id');
+
     echo kiz_yii_var_inspect($query);
+
+    echo \yii\grid\GridView::widget(
+        ['dataProvider' => new \yii\data\ActiveDataProvider([
+            'query' => $query,
+            'pagination' => ['pageSize'=>5]
+            ])
+        ]);
+
+/*
+    $array_ar = $query->all();
+    echo kiz_yii_var_inspect($array_ar);
+*/
+
+    /*
+    echo '<ul>';
+    foreach ($array_ar as $c)
+        echo
+        '<li>' ,
+        Html::encode($c->country_name) ,
+        '(', $c->country_code, ') :' ,
+        $c->total_population,
+        '</li>';
+    echo '</ul>';
+    echo LinkPager::widget(['pagination'=>$pagination]);
     */
+
 ?>
 
 
