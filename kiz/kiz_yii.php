@@ -105,7 +105,7 @@
         $out = ob_get_contents();
         ob_end_clean();
 
-        return '<pre>'.$out .'</pre>' ;
+        return '<pre>'.$out.'</pre>' ;
     }
 
     /**
