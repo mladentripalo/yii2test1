@@ -41,12 +41,6 @@
             ]
         ]),
         'columns' => [
-
-
-            [
-                'class' => '\yii\grid\ActionColumn',
-                'template' => '{view} {update} {delete}',
-            ],
             [
                 'class' => 'yii\grid\DataColumn',
                 'attribute' => 'name',
@@ -63,6 +57,16 @@
             [
                 'attribute' => 'continent_name',
                 'label' => 'Kontinent',
+            ],
+            [
+                'class' => '\yii\grid\ActionColumn',
+                /*
+                'buttons' => [
+                    'primjer' => function ($url, $model, $key){return 'PR';}
+                ],
+                */
+                'template' => '{view} {update} {delete} {primjer}',
+                'controller' => 'CountryGridEdit'
             ]
         ]
     ]);
