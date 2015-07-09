@@ -4,6 +4,7 @@
     use yii\web\Application;
     use \yii\db\ActiveQuery;
 
+
     /** @noinspection PhpIncludeInspection */
     require_once \Yii::$app->basePath . '\kiz\kiz_yii.php';
 ?>
@@ -26,20 +27,22 @@
 <?php
 
     ___pre_code_start();
-    // comment before
-    $drz = \app\models\Country::findOne('HR');      /** @var \app\models\Country $drz ; */
-    // comment after
+    $drz = \app\models\Country::findOne('AU');      /** @var \app\models\Country $drz ; */
     echo ___pre_code_end();
-    echo kiz_yii_var_inspect($drz);
-    echo kiz_yii_var_inspect($drz->continent_name);
-    echo kiz_yii_var_inspect($drz->attributeLabels());
+    //echo kiz_yii_var_inspect($drz);
+    echo kiz_yii_varDump($drz);
+
+    echo kiz_yii_varDump($drz->continent_name);
+    echo kiz_yii_varDump($drz->attributeLabels());
+    //\yii\helpers\VarDumper::dump($drz,10,true);
     echo '</br>';
 
     ___pre_code_start();
     $cont = $drz->getContinent()->one();
     echo ___pre_code_end();
-    echo kiz_yii_var_inspect($cont);
+    echo kiz_yii_varDump($cont);
     echo '</br>';
+    //\yii\helpers\VarDumper::dump($cont,10,true);
 
     /*
     ___pre_code_start();
@@ -60,18 +63,18 @@
     echo '</br>';
 
     $someText = 'This is a string.';
-    print kiz_yii_var_inspect($someText);
+    print kiz_yii_varDump($someText);
 
     $someInteger = 375;
-    print kiz_yii_var_inspect($someInteger);
+    print kiz_yii_varDump($someInteger);
 
     $someDouble = 375.44;
-    print kiz_yii_var_inspect($someDouble);
+    print kiz_yii_varDump($someDouble);
 
     $someArray = ['tenk', 'boca', 'pupaja' => 'unreal'];
-    print kiz_yii_var_inspect($someArray);
+    print kiz_yii_varDump($someArray);
 
-    print kiz_yii_var_inspect($_REQUEST);
+    print kiz_yii_varDump($_REQUEST);
 
 ?>
 

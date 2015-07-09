@@ -34,8 +34,21 @@
         return $n;
     }
 
+    /**
+     * @param $var
+     * @return string
+     */
+    function kiz_yii_varDump($var){
+        ob_start();
+        \yii\helpers\VarDumper::dump($var,10,true);
+        $out = ob_get_contents();
+        ob_end_clean();
+        return '<pre>'.$out .'</pre>' ;
+    }
 
     /**
+     * use this when kiz_yii_varDump() is not enough or doesnt exsist.
+     *
      * @param $label
      * @param string $val RESERVED, do not use!
      * @return string $string to be output on screen in html format
