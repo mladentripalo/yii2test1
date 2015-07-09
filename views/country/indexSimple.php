@@ -26,19 +26,17 @@
 </p>
 
 <?php
-    /*
     ob_start();
     ___pre_code_start();
-
-    **
+    /**
      * action CountryController::actionIndexSimple()
      * contains following relevent code:
      * $query = Country::find();
      * $countries = $query->orderBy('name')
-     *                    ->offset($pagination->offset)
-     *                    ->limit($pagination->limit)
-     *                    ->all();
-    *
+                         ->offset($pagination->offset)
+                         ->limit($pagination->limit)
+                         ->all();
+    */
     echo '<ul>';
     foreach ($countries as $c)
         echo
@@ -53,7 +51,6 @@
     $output = ob_get_contents();
     ob_end_clean();
     echo $code, $output;
-    */
 ?>
 
 <p>
@@ -88,11 +85,12 @@
 <p>
     This may be a covinient way but a subquery has to be called once per foreach loop
     which is <span class="redBold_kiz">not efficient</span> for big data. Much better way would be
-    to let SQL engine join this data in one single query...
+    to let SQL engine join this data in one single query... for example:
 </p>
 
 <?php
-
+    ob_start();
+    ___pre_code_start();
     $query = (new \yii\db\Query())
         ->select([
                 'country_name'=>'country.name',
@@ -102,34 +100,24 @@
         ->from('country')
         ->leftJoin('continent','country.continent_id=continent.continent_id');
 
-    echo kiz_yii_var_inspect($query);
-
     echo \yii\grid\GridView::widget(
         ['dataProvider' => new \yii\data\ActiveDataProvider([
             'query' => $query,
-            'pagination' => ['pageSize'=>5]
+            'pagination' => $pagination
             ])
         ]);
-
-/*
-    $array_ar = $query->all();
-    echo kiz_yii_var_inspect($array_ar);
-*/
-
-    /*
-    echo '<ul>';
-    foreach ($array_ar as $c)
-        echo
-        '<li>' ,
-        Html::encode($c->country_name) ,
-        '(', $c->country_code, ') :' ,
-        $c->total_population,
-        '</li>';
-    echo '</ul>';
-    echo LinkPager::widget(['pagination'=>$pagination]);
-    */
-
+    $code = ___pre_code_end();
+    $output = ob_get_contents();
+    ob_end_clean();
 ?>
+<?= $code ?>
+<h4>Result:</h4>
+<?= $output ?>
+
+
+
+
+
 
 
 
