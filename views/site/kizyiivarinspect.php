@@ -22,13 +22,16 @@
     Simple JQuerry clock: <span id="clk"></span>
 </p>
 
-<h3>Example code for kiz_yii_var_inspect() function</h3>
+<h3>Example code for kiz_yii_var_inspect() and/or kiz_yii_varDump() functions</h3>
+<h4>Also shows usage of ___pre_code_start() and ___pre_code_end() which display actually running part of code on screen.</h4>
 
 <?php
+
 
     ___pre_code_start();
     $drz = \app\models\Country::findOne('AU');      /** @var \app\models\Country $drz ; */
     echo ___pre_code_end();
+
     //echo kiz_yii_var_inspect($drz);
     echo kiz_yii_varDump($drz);
 
