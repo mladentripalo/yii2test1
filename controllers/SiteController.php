@@ -86,8 +86,10 @@ class SiteController extends Controller
         return $this->render('kizyiivarinspect');
     }
 
-
-
+    // simople show passed view
+    public function actionShow($view = 'index'){
+        return $this->render($view);
+    }
 
     public function actionIndex()
     {
