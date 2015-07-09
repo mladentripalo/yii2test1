@@ -8,44 +8,15 @@
     use \yii\grid\GridView;
 
     ___kiz_pre_code_start();
-    $dataProvider = new ActiveDataProvider([
-            'query' => Country::find()->joinWith('continent'),
+    echo GridView::widget([
+        'dataProvider' => new ActiveDataProvider([
             //'query' => Country::find(),
+            'query' => Country::find()->joinWith('continent'),
             'pagination' => [
                 'totalCount' => Country::find()->count(),
                 'pageSize' => 5
             ],
-            // sort class can be manually instantiated using: $srt = new \yii\data\Sort(['attributes' => [ 'name' .....
-            //'sort' => $srt
-            // or defined in place like below
-            'sort' => [
-                'attributes' => [
-                    'name',
-                    /* default values for sort attribute (if not set)
-                    'name' => [
-                        'asc' => ['name' => SORT_ASC],
-                        'desc' => ['name' => SORT_DESC],
-                        'default' => SORT_ASC,
-                        'label' => Inflector::camel2words('name'),
-                    ], */
-
-                    /* sorting is also possible using multiple criteria like this...
-                    'name' => [
-                        'asc' => ['name' => SORT_ASC, 'population' => SORT_ASC],
-                        'desc' => ['name' => SORT_DESC, 'population' => SORT_ASC],
-                        'default' => SORT_ASC,
-                        'label' => Inflector::camel2words('name'),
-                    ], */
-
-                    'population',
-                    'code' => ['label' => 'sortlabel_countrycode' ],
-                    'continent.name' => ['label' => 'sortlabel_continentname' ]
-                ]
-            ]
-        ]);
-
-    echo GridView::widget([
-        'dataProvider' => $dataProvider,
+        ]),
         'columns' => [
             [
                 // 'yii\grid\DataColumn is default
@@ -83,7 +54,12 @@
 
 <h2>Using ActiveRecord -> ActiveQuery method</h2>
 <p>
-    Table is not sortable by continent?
+    Table is not sortable by continent? 'country' table was joined with 'continent' table
+    properly and continent column is displayed properly, however there is no sorting option on Kontinent column.
+    In order to fox this I created sorting class manually in DataProvider,
+    <a href="<?= Yii::$app->getHomeUrl() ?>?r=country/show&view=gridB">follow this link</a>.
+
 </p>
 <h2>Code:</h2>
 <?= $code ?>
+
