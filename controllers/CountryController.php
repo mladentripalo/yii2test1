@@ -7,6 +7,7 @@ use yii\data\Pagination;
 
 class CountryController extends \yii\web\Controller
 {
+
     public function actionIndexSimple()
     {
         $query = Country::find();
