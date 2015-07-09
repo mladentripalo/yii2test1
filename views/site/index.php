@@ -112,8 +112,19 @@ $this->title = 'My Yii Application';
     -->
     <a href="<?=Yii::$app->getHomeUrl()?>?r=site/act-rec-join">databases join using Two ActiveRecord model classes</a>
     <br/>
+    <br/>
 
 
+    <!--
+    r=country/show&view=xxx simply show view xxx
+    -->
+    <a href="<?=Yii::$app->getHomeUrl()?>?r=country/show&view=emptyView">CountryController:: actionShow -> emptyView</a>
+    <br/>
+    <!--
+    r=country/show&view=xxx simply show view xxx
+    -->
+    <a href="<?=Yii::$app->getHomeUrl()?>?r=country/show&view=gridA">CountryController:: actionShow -> gridA</a>
+    <br/>
 
 
 

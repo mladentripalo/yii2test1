@@ -22,25 +22,27 @@
     Simple JQuerry clock: <span id="clk"></span>
 </p>
 
-<h3>Example code for kiz_yii_var_inspect() and/or kiz_yii_varDump() functions</h3>
+<h3>Example code for kiz_yii_varInspect() and/or kiz_yii_varDump() functions</h3>
 <h4>Also shows usage of ___pre_code_start() and ___pre_code_end() which display actually running part of code on screen.</h4>
 
 <?php
 
 
-    ___pre_code_start();
+    ___kiz_pre_code_start();
     $drz = \app\models\Country::findOne('AU');      /** @var \app\models\Country $drz ; */
     echo ___pre_code_end();
 
-    //echo kiz_yii_var_inspect($drz);
+    //echo kiz_yii_varInspect($drz);
     echo kiz_yii_varDump($drz);
-
+    echo kiz_yii_varInspect($drz);
     echo kiz_yii_varDump($drz->continent_name);
+    echo kiz_yii_varInspect($drz->continent_name);
     echo kiz_yii_varDump($drz->attributeLabels());
+    echo kiz_yii_varInspect($drz->attributeLabels());
     //\yii\helpers\VarDumper::dump($drz,10,true);
     echo '</br>';
 
-    ___pre_code_start();
+    ___kiz_pre_code_start();
     $cont = $drz->getContinent()->one();
     echo ___pre_code_end();
     echo kiz_yii_varDump($cont);
@@ -48,17 +50,17 @@
     //\yii\helpers\VarDumper::dump($cont,10,true);
 
     /*
-    ___pre_code_start();
+    ___kiz_pre_code_start();
     $contOne = $cont->one();
     echo ___pre_code_end();
-    echo kiz_yii_var_inspect($contOne);
+    echo kiz_yii_varInspect($contOne);
     echo '</br>';
     */
 
 
     /*
     $dataprovider = new \yii\data\ActiveDataProvider(['query',$cont]);
-    $dataprovider && kiz_yii_var_inspect($dataprovider);
+    $dataprovider && kiz_yii_varInspect($dataprovider);
     */
 
 

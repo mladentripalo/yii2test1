@@ -34,15 +34,77 @@
         return $n;
     }
 
+
     /**
      * @param $var
+     * @param int $depth
      * @return string
      */
-    function kiz_yii_varDump($var){
+    function kiz_yii_varDump($var,$depth=10){
+
         ob_start();
-        \yii\helpers\VarDumper::dump($var,10,true);
+
+        if(function_exists('debug_backtrace')){
+
+            $bt = debug_backtrace();
+
+            assert('$bt');
+            assert('isset($bt[0]["file"])');
+            assert('!empty($bt[0]["file"])');
+            assert('isset($bt[0]["line"])');
+            assert('is_int($bt[0]["line"])');
+
+            $src = file($bt[0]["file"]);
+            $line = $src[ $bt[0]['line'] - 1 ];
+
+            // let's match the function call and the last closing bracket
+            $match = [];
+            preg_match( "#".__FUNCTION__."\((.+)\)#", $line, $match );
+            assert('count($match)>1');
+
+            /* let's count brackets to see how many of them actually belongs
+               to the var name
+               Eg:   die(kiz_yii_varInspect($this->getUser()->hasCredential("delete")));
+                      We want:   $this->getUser()->hasCredential("delete")
+            */
+            $max = strlen($match[1]);
+            $varname = '';
+            $c = 0;
+            for($i = 0; $i < $max; $i++){
+                if(     $match[1]{$i} == '(' ) $c++;
+                elseif( $match[1]{$i} == ')' ) $c--;
+                if($c < 0) break;
+                $varname .=  $match[1]{$i};
+            }
+
+            $fil = substr($bt[0]["file"],strlen(\Yii::$app->basePath)+1);
+
+            echo '<span style="color: #00209f">';
+            echo '*** kiz_yii_varDump() *** <span style="color: #f30008;font-weight: bolder">', $varname, '</span> ';
+            echo '<em>',($typ=gettype($var)),'</em> ';
+            echo $typ=='object' ? '('.get_class($var).') ' : '' ;
+            echo 'in <strong>',$fil,'</strong>:',$bt[0]['line'],'</br>';
+        }
+
+        ini_set('highlight.string','#028102');
+        ini_set('highlight.comment','#818181');
+        ini_set('highlight.keyword','#0265D7');
+        ini_set('highlight.bg','#B1B1B1');
+        ini_set('highlight.default','#000000');
+        ini_set('highlight.html','#670202');
+
+        \yii\helpers\VarDumper::dump($var,$depth,true);
+
+        ini_restore('highlight.string');
+        ini_restore('highlight.comment');
+        ini_restore('highlight.keyword');
+        ini_restore('highlight.bg');
+        ini_restore('highlight.default');
+        ini_restore('highlight.html');
+
         $out = ob_get_contents();
         ob_end_clean();
+
         return '<pre>'.$out .'</pre>' ;
     }
 
@@ -53,7 +115,7 @@
      * @param string $val RESERVED, do not use!
      * @return string $string to be output on screen in html format
      */
-    function kiz_yii_var_inspect($label, $val = '__undefin_e_d__')
+    function kiz_yii_varInspect($label, $val = '__undefin_e_d__')
     {
         $out = '';
         if(!defined('YII_DEBUG') || !YII_DEBUG || !function_exists('debug_backtrace'))
@@ -62,7 +124,7 @@
         if($val == '__undefin_e_d__') {
 
             /* The first argument is not the label but the
-               variable to kiz_yii_var_inspect itself, so we need a label.
+               variable to kiz_yii_varInspect itself, so we need a label.
                Let's try to find out it's name by peeking at
                the source code.
             */
@@ -92,7 +154,7 @@
 
             /* let's count brackets to see how many of them actually belongs
                to the var name
-               Eg:   die(kiz_yii_var_inspect($this->getUser()->hasCredential("delete")));
+               Eg:   die(kiz_yii_varInspect($this->getUser()->hasCredential("delete")));
                       We want:   $this->getUser()->hasCredential("delete")
             */
             $max = strlen($match[1]);
@@ -110,7 +172,7 @@
 
             ob_start();
             echo '<pre><span style="color: #00209f">';
-            echo '*** kiz_yii_var_inspect() *** <span style="color: #f30008;font-weight: bolder">', $label, '</span> ';
+            echo '*** kiz_yii_varInspect() *** <span style="color: #f30008;font-weight: bolder">', $label, '</span> ';
             echo '<em>',($typ=gettype($val)),'</em> ';
             echo $typ=='object' ? '('.get_class($val).') ' : '' ;
             echo 'in <strong>',$fil,'</strong>:',$bt[0]['line'],'</br>';
@@ -141,7 +203,7 @@
     }
 
     $___pre_code_start_marker = '';
-    function ___pre_code_start() {global $___pre_code_start_marker ; $___pre_code_start_marker=__FUNCTION__;}
+    function ___kiz_pre_code_start() {global $___pre_code_start_marker ; $___pre_code_start_marker=__FUNCTION__;}
     function ___pre_code_end() {
         global $___pre_code_start_marker;
         $out = '';

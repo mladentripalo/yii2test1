@@ -46,7 +46,7 @@
 
         if($drz){
 
-            kiz_yii_var_inspect($drz);
+            kiz_yii_varInspect($drz);
 
             YII_DEBUG && assert('$drz->className()==="app\models\Drzava"');
 
@@ -66,19 +66,19 @@
 
         if($aquery){
 
-            kiz_yii_var_inspect($aquery);
+            kiz_yii_varInspect($aquery);
 
             $tupac = 'Kopa kabana!';
-            kiz_yii_var_inspect($tupac);
+            kiz_yii_varInspect($tupac);
 
             $inatager = 375;
-            kiz_yii_var_inspect($inatager);
+            kiz_yii_varInspect($inatager);
 
             $faloat = 375.44;
-            kiz_yii_var_inspect($faloat);
+            kiz_yii_varInspect($faloat);
 
             $auraay = ['tenk', 'boca', 'pupaja'=>'unreal'];
-            kiz_yii_var_inspect($auraay);
+            kiz_yii_varInspect($auraay);
 
         }
         else

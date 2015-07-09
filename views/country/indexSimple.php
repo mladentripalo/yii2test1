@@ -27,7 +27,7 @@
 
 <?php
     ob_start();
-    ___pre_code_start();
+    ___kiz_pre_code_start();
     /**
      * action CountryController::actionIndexSimple()
      * contains following relevent code:
@@ -90,7 +90,7 @@
 
 <?php
     ob_start();
-    ___pre_code_start();
+    ___kiz_pre_code_start();
     $query = (new \yii\db\Query())
         ->select([
                 'country_name'=>'country.name',

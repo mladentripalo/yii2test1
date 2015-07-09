@@ -30,6 +30,10 @@ class CountryController extends \yii\web\Controller
         ]);
     }
 
+    // simople show passed view
+    public function actionShow($view = 'emptyView'){
+        return $this->render($view);
+    }
 
     public function actionIndexGridView()
     {
