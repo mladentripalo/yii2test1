@@ -204,7 +204,7 @@
 
     $___pre_code_start_marker = '';
     function ___kiz_pre_code_start() {global $___pre_code_start_marker ; $___pre_code_start_marker=__FUNCTION__;}
-    function ___pre_code_end() {
+    function ___kiz_pre_code_end() {
         global $___pre_code_start_marker;
         $out = '';
 

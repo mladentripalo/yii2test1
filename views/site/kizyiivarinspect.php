@@ -30,7 +30,7 @@
 
     ___kiz_pre_code_start();
     $drz = \app\models\Country::findOne('AU');      /** @var \app\models\Country $drz ; */
-    echo ___pre_code_end();
+    echo ___kiz_pre_code_end();
 
     //echo kiz_yii_varInspect($drz);
     echo kiz_yii_varDump($drz);
@@ -44,7 +44,7 @@
 
     ___kiz_pre_code_start();
     $cont = $drz->getContinent()->one();
-    echo ___pre_code_end();
+    echo ___kiz_pre_code_end();
     echo kiz_yii_varDump($cont);
     echo '</br>';
     //\yii\helpers\VarDumper::dump($cont,10,true);
@@ -52,7 +52,7 @@
     /*
     ___kiz_pre_code_start();
     $contOne = $cont->one();
-    echo ___pre_code_end();
+    echo ___kiz_pre_code_end();
     echo kiz_yii_varInspect($contOne);
     echo '</br>';
     */

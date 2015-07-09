@@ -47,7 +47,7 @@
             '</li>';
     echo '</ul>';
     echo LinkPager::widget(['pagination'=>$pagination]);
-    $code = ___pre_code_end();
+    $code = ___kiz_pre_code_end();
     $output = ob_get_contents();
     ob_end_clean();
     echo $code, $output;
@@ -106,7 +106,7 @@
             'pagination' => $pagination
             ])
         ]);
-    $code = ___pre_code_end();
+    $code = ___kiz_pre_code_end();
     $output = ob_get_contents();
     ob_end_clean();
 ?>
