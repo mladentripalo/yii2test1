@@ -73,7 +73,7 @@
     <li>
         <a href="<?=Yii::$app->getHomeUrl()?>?r=country/show&view=gridB">GridB method link</a> <br/>
         Second method fixed sorting by continent.name but required custom Sort class definition and had
-        an inadverse effect that i dont like: after sorting URL contained sort commands with table name and column name
+        an inadverse effect: after sorting URL contained sort commands with table name and column name
         shown to the user, which is bad and security risk imo. I havent found a way to fix this but writing
         new class extended from yii\data\Sort and overloading CreateUrl() method and few others to be able
         to add an option in attributes array such as 'urlLabel' for example, which was too much fuss so i gave up.

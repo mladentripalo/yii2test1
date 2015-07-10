@@ -8,9 +8,9 @@
  *
  */
 
-    require_once('C:\xampp\htdocs\phpStorm\yii2test1\kiz\kiz_yii.php');
-    use \app\models\Drzava;
-    use app\models\Kontinent;
+    require_once APP_BASE_PATH.'/kiz/kiz_yii.php';
+    use \app\models\Country;
+    use app\models\Continent;
     use \yii\db\ActiveQuery;
 ?>
 
@@ -27,93 +27,31 @@
             });
     </script>
 
-<pre>
+<h3>Output:</h3>
+<?php
+    ___kiz_pre_code_start();
+    /** @var Country $drz; */
+    $drz = Country::findOne('HR');
 
+    if($drz){
 
-    <?php
+        YII_DEBUG && assert('$drz->className()==="app\models\Country"');
 
-        // returns ActiveQuery
+        echo '<pre>';
+        echo "\ncode:" . $drz->code;
+        echo "\nname:" . $drz->name;
+        echo "\npopulation:" . $drz->population;
+        echo "\ncontinent:" . $drz->continent_name;
+        echo '</pre>';
+    }
+    else
+        echo "\n\$drz Not Found!";
+    $code1 = ___kiz_pre_code_end();
+?>
 
+<h3>Code:</h3>
+<?= $code1 . kiz_yii_varDump($drz) ?>
 
-        /*
-        $something = Drzava::find()->joinWith(['Kontinent']);
-        echo $something->className() . "\n";
-        indent_print_r($something->all());
-        */
-
-        /** @var Drzava $drz; */
-        $drz = Drzava::findOne('AU');
-
-        if($drz){
-
-            kiz_yii_varInspect($drz);
-
-            YII_DEBUG && assert('$drz->className()==="app\models\Drzava"');
-
-            echo "\n" . $drz->code;
-            echo "\n" . $drz->name;
-            echo "\n" . $drz->population;
-            echo "\n" . $drz->kontinent;
-        }
-        else
-            echo "\n\$drz Not Found!";
-
-        echo 'path: ', Yii::$app->basePath;
-
-
-        /** @var ActiveQuery $aquery */
-        $aquery = Drzava::find()->joinWith(['Kontinent']);
-
-        if($aquery){
-
-            kiz_yii_varInspect($aquery);
-
-            $tupac = 'Kopa kabana!';
-            kiz_yii_varInspect($tupac);
-
-            $inatager = 375;
-            kiz_yii_varInspect($inatager);
-
-            $faloat = 375.44;
-            kiz_yii_varInspect($faloat);
-
-            $auraay = ['tenk', 'boca', 'pupaja'=>'unreal'];
-            kiz_yii_varInspect($auraay);
-
-        }
-        else
-            echo "\n\$aquery Not Found!";
-
-
-
-    ?>
-
-
-    <h3>Code:</h3>
-    <pre>
-    $res = (new Query)
-        ->select(['country.code','country.name','country.population', 'continent'=>'continent.name'])
-        ->from(['country'])
-        ->leftJoin('continent', 'country.continent_id=continent.continent_id')
-        ->all();
-    <strong>
-    //this foreach loop creates above displayed table on screen </strong>
-    foreach ($res as $r)
-        printf("%30s %6s %16s %20s\n", $r['name'], $r['code'], $r['population'], $r['continent']);
-    </pre>
-
-
-    <p>
-        Returned $res array has very JSON-like notation, containing main indexed array each nesting
-        asociative array where coulumn names are keys...
-    </p>
-
-
-    <h3>Contents of returned $res array:</h3>
-
-    <pre>
-
-    </pre>
 
 
 

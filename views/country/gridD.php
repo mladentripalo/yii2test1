@@ -55,14 +55,14 @@ SQL;
         ],
 
     ]);
-    // to render widget use 'echo $gridView->run();'
+    // to render widget use '$gridView->run();'
 
     $code = ___kiz_pre_code_end();
 ?>
 
 <h2>Alternative (even faster) to <a href="<?=Yii::$app->getHomeUrl()?>?r=country/show&view=gridA">gridC method</a></h2>
 
-<?= $gridView->run() ?>
+<?php $gridView->run() ?>
 
 <h4>Code:</h4>
 <?= $code ?>
