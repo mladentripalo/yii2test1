@@ -35,7 +35,7 @@
     $dataProvider = new \yii\data\ActiveDataProvider([
         'query' => $query,
         'pagination' => [
-            'totalCount' => Country::find()->count(),
+            'totalCount' => (int)Country::find()->count(),
             'pageSize' => 5
         ],
         'sort' => ['attributes' => [ 'ivica','marica','janica' ]]
@@ -59,18 +59,19 @@
 <?= $result ?>
 
 <h2>Using simple custom Query method</h2>
+<h3>Simple Query method for joined GridView (rows editable, sortable)...</h3>
 <p>Both previously described methods showed flaws and performance issues...</p>
 
 <ul>
     <li>
-        <a href="<?=Yii::$app->getHomeUrl()?>?r=country/show&view=gridA">gridA method link</a> <br/>
+        <a href="<?=Yii::$app->getHomeUrl()?>?r=country/show&view=gridA">GridA method link</a> <br/>
         This method was "the proper way" by Yii2 to join and sort table but had its issues,
         the sorting by continent.name did not work even after properly joining other table, second
         joining method called subqueries for each row to find continent which can cause serious
         performance issues on big tables.
     </li>
     <li>
-        <a href="<?=Yii::$app->getHomeUrl()?>?r=country/show&view=gridB">ridA method link</a> <br/>
+        <a href="<?=Yii::$app->getHomeUrl()?>?r=country/show&view=gridB">GridB method link</a> <br/>
         Second method fixed sorting by continent.name but required custom Sort class definition and had
         an inadverse effect that i dont like: after sorting URL contained sort commands with table name and column name
         shown to the user, which is bad and security risk imo. I havent found a way to fix this but writing
@@ -85,15 +86,21 @@
         normally by calling a controller of its own
 
         Now in this method I believe is the best way to do this, still a bit longer than passing the querry directly
-        in SQL but performance-wise identical and much more cross-database engine compatible, so here it is...
+        in SQL but performance-wise identical and much more cross-database engine compatible.
+    </li>
+</ul>
+<ul>
+    <li>
+        There is also a
+        <a href="<?=Yii::$app->getHomeUrl()?>?r=country/show&view=gridD">
+            fourth alternative (gridD)
+        </a>
+        similar to this method.
     </li>
 
 </ul>
 
-<h3>Simple Query method for joined GridView (rows editable, sortable)...</h3>
-<p>
-    first we create the query from scratch...
-</p>
+<h3>Code:</h3>
 
 <?= $code ?>
 

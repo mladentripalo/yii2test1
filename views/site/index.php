@@ -129,6 +129,8 @@ $this->title = 'My Yii Application';
     <br/>
     <a href="<?=Yii::$app->getHomeUrl()?>?r=country/show&view=gridC">CountryController:: actionShow -> gridC</a>
     <br/>
+    <a href="<?=Yii::$app->getHomeUrl()?>?r=country/show&view=gridD">CountryController:: actionShow -> gridD</a>
+    <br/>
 
 
 
