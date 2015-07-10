@@ -6,6 +6,7 @@
     use app\models\Continent;
     use \yii\data\ActiveDataProvider;
     use \yii\grid\GridView;
+    use yii\data\Sort;
 
     ___kiz_pre_code_start();
     $dataProvider = new ActiveDataProvider([
@@ -67,12 +68,7 @@
             ],
             [
                 'class' => '\yii\grid\ActionColumn',
-                'buttons' => [
-                    'primjer' => function ($url, $model, $key) {
-                        return 'PR';
-                    }
-                ],
-                'template' => '{view} {update} {delete} {primjer}',
+                'template' => '{view} {update} {delete}',
                 'controller' => 'CountryGridEdit'
             ]
         ]

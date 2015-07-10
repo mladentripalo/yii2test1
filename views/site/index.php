@@ -125,7 +125,9 @@ $this->title = 'My Yii Application';
     -->
     <a href="<?=Yii::$app->getHomeUrl()?>?r=country/show&view=gridA">CountryController:: actionShow -> gridA</a>
     <br/>
-    <a href="<?=Yii::$app->getHomeUrl()?>?r=country/show&view=gridB">CountryController:: actionShow -> gridA</a>
+    <a href="<?=Yii::$app->getHomeUrl()?>?r=country/show&view=gridB">CountryController:: actionShow -> gridB</a>
+    <br/>
+    <a href="<?=Yii::$app->getHomeUrl()?>?r=country/show&view=gridC">CountryController:: actionShow -> gridC</a>
     <br/>
 
 
