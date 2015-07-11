@@ -104,3 +104,7 @@
 
 <?= $code ?>
 
+<?= kiz_yii_varDump($dataProvider) ?>
+<?= kiz_yii_varInspect('neki string') ?>
+<?= kiz_yii_varDump(67) ?>
+

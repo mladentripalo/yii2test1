@@ -14,9 +14,11 @@ use Yii;
  * @property int $continent_id
  *
  * @property string $continent_name
+ * @property Continent $continent
  */
 class Country extends \yii\db\ActiveRecord
 {
+
     /**
      * @inheritdoc
      */
@@ -44,11 +46,11 @@ class Country extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'code' => 'Code',
-            'name' => 'Name',
+            'code' => 'Country code',
+            'name' => 'Country name',
             'population' => 'Population',
             'continent_id' => 'Continent ID',
-            'continent_name' => 'Continent Name',
+            'continent_name' => 'Continent',
         ];
     }
 
@@ -56,13 +58,11 @@ class Country extends \yii\db\ActiveRecord
     public function getContinent() {
         return $this->hasOne(Continent::className(), ['continent_id' => 'continent_id']);
     }
+
     /** @return string */
     public function getContinent_name(){
-        /** @var Continent $cont */
-        $cont = $this->getContinent()->one();
-        return $cont->name;
+        return ($cont=$this->getContinent()->one()) ? $cont->name :
+            (YII_DEBUG ? 'error country->getContinent_name()' : '');
     }
-
-
 
 }

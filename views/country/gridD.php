@@ -4,14 +4,14 @@
 
     ___kiz_pre_code_start();
 
-    $count = (int)\app\models\Country::find()->count();
+    //$count = (int)\app\models\Country::find()->count();
 
-    // or if u wish to avoid ActiveRecord at all...
-    /*
+    //or if u wish to avoid ActiveRecord at all...
+
     $count = (int)Yii::$app->db->createCommand(
         'SELECT COUNT(*) FROM country'
     )->queryScalar();
-    */
+
 
     $sqlQuery = <<<SQL
         SELECT country.name AS ivica, country.code AS marica, continent.name AS janica

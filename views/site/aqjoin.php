@@ -1,31 +1,28 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Kiz
- * Date: 4.7.2015.
- * Time: 11:21
- *
- *
- */
 
     use yii\db\Query;
     require_once APP_BASE_PATH.'/kiz/kiz_yii.php';
 
 ?>
 
-    <p>
-        Simple JQuerry clock: <span id="clk"></span>
-    </p>
+<p>
+    Simple JQuerry clock: <span id="clk"></span>
+</p>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#clk').text((new Date()).toLocaleTimeString());
-            setInterval(
-                function(){$('#clk').text((new Date()).toLocaleTimeString())},
-                1000);
-            });
-    </script>
+
+<!--
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+-->
+<script>
+    $(document).ready(function () {
+        $('#clk').text((new Date()).toLocaleTimeString());
+        setInterval(
+            function () {
+                $('#clk').text((new Date()).toLocaleTimeString())
+            },
+            1000);
+    });
+</script>
 
 <pre>
 

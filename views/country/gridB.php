@@ -10,44 +10,35 @@
 
     ___kiz_pre_code_start();
     $dataProvider = new ActiveDataProvider([
-        'query' => Country::find()->joinWith('continent'),
+        'query' => Country::find()
+            ->joinWith('continent'),
         'pagination' => [
             'totalCount' => Country::find()->count(),
             'pageSize' => 5
         ],
-        // sort class can be manually instantiated using: $srt = new \yii\data\Sort(['attributes' => [ 'name' .....
-        //'sort' => $srt
-        // or defined in place like below
-
         'sort' => [
             'attributes' => [
                 'name',
-                /* default values for sort attribute (if not set)
-                'name' => [
-                    'asc' => ['name' => SORT_ASC],
-                    'desc' => ['name' => SORT_DESC],
-                    'default' => SORT_ASC,
-                    'label' => Inflector::camel2words('name'),
-                ], */
-
-                /* sorting is also possible using multiple criteria like this...
-                'name' => [
-                    'asc' => ['name' => SORT_ASC, 'population' => SORT_ASC],
-                    'desc' => ['name' => SORT_DESC, 'population' => SORT_ASC],
-                    'default' => SORT_ASC,
-                    'label' => Inflector::camel2words('name'),
-                ], */
-
                 'population',
                 'code',
-                'continent.name'
+                'continent_name' => [
+                    'asc' => ['continent.name' => SORT_ASC],
+                    'desc' => ['continent.name' => SORT_DESC],
+                    'default' => SORT_ASC,
+                ]
             ]
         ]
     ]);
 
     echo GridView::widget([
         'dataProvider' => $dataProvider,
+
         'columns' => [
+            'name',
+            'code',
+            'population',
+            'continent_name'
+            /*
             [
                 // 'yii\grid\DataColumn is default
                 // 'class' => 'yii\grid\DataColumn',
@@ -71,6 +62,7 @@
                 'template' => '{view} {update} {delete}',
                 'controller' => 'CountryGridEdit'
             ]
+            */
         ]
     ]);
     $code = ___kiz_pre_code_end();
