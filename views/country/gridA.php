@@ -18,32 +18,12 @@
             ],
         ]),
         'columns' => [
-            [
-                // 'yii\grid\DataColumn is default
-                // 'class' => 'yii\grid\DataColumn',
-                'attribute' => 'name',
-                'label' => 'Država'
-            ],
-            [
-                'attribute' => 'code',
-                'label' => 'Skraćeno',
-            ],
-            [
-                'attribute' => 'population',
-                'label' => 'Broj stanovnika',
-            ],
-            [
-                'attribute' => 'continent.name',
-                'label' => 'Kontinent',
-                //'enableSorting' => true,
-            ],
-            [
-                'class' => '\yii\grid\ActionColumn',
-                /*
-                'buttons' => [
-                    'primjer' => function ($url, $model, $key){return 'PR';}
-                ],
-                */
+            'name',
+            'code',
+            'population',
+            'continent_name',
+            [   'class' => '\yii\grid\ActionColumn',
+                'buttons' => [ 'primjer' => function ($url, $model, $key){return '<a href="#">Primjer</a>';} ],
                 'template' => '{view} {update} {delete} {primjer}',
                 'controller' => 'CountryGridEdit'
             ]

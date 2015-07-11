@@ -10,8 +10,9 @@
 
 ?>
 
-    <?php
+<?php
     ___kiz_pre_code_start();
+        /*
     $query = new \yii\db\Query([
         'select' => [
             'ivica' => 'country.name',
@@ -31,30 +32,45 @@
         // this property can be ommited if we use GridView without action buttons, i.e. just to view data.
         'indexBy' => 'marica',
     ]);
+        */
+
+    $nRows = (int)Country::find()->count();
+    $query = ((new \yii\db\Query())
+        ->select([
+            'ivica' => 'country.name',
+            'marica' => 'country.code',
+            'raja' => 'country.population',
+            'janica' => 'continent.name'
+        ])
+        ->from('country')
+        ->leftJoin('continent', 'country.continent_id = continent.continent_id')
+        ->indexBy('marica'));
 
     $dataProvider = new \yii\data\ActiveDataProvider([
         'query' => $query,
+        'totalCount' => $nRows,
         'pagination' => [
-            'totalCount' => (int)Country::find()->count(),
             'pageSize' => 5
         ],
-        'sort' => ['attributes' => [ 'ivica','marica','janica' ]]
+        'sort' => ['attributes' => [ 'ivica','marica','raja','janica' ]]
     ]);
         $result = GridView::widget([
             'dataProvider' => $dataProvider,
             'columns' => [
-                ['attribute' => 'ivica'],
-                ['attribute' => 'marica'],
-                ['attribute' => 'janica'],
+                'ivica:text:Country name',
+                'marica:text:Country code',
+                'raja:text:Population',
+                'janica:text:Continent',
                 [
                     'class' => '\yii\grid\ActionColumn',
                     'template' => '{view} {update} {delete}',
-                    'controller' => 'CountryGridEdit'
+                    'controller' => 'CountryGridEdit',
+                    'header' => 'actions'
                 ],
             ],
         ]);
     $code = ___kiz_pre_code_end();
-    ?>
+?>
 
 <?= $result ?>
 
