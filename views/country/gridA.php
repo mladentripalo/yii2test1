@@ -10,23 +10,23 @@
     ___kiz_pre_code_start();
     echo GridView::widget([
         'dataProvider' => new ActiveDataProvider([
-            //'query' => Country::find(),
-            'query' => Country::find()->joinWith('continent'),
-            'pagination' => [
-                'totalCount' => Country::find()->count(),
-                'pageSize' => 5
-            ],
+            'query' => Country::find(),
+            //'query' => Country::find()->joinWith('continent'),
+            'pagination' => ['pageSize' => 5],
         ]),
         'columns' => [
             'name',
             'code',
             'population',
             'continent_name',
+
+            /*
             [   'class' => '\yii\grid\ActionColumn',
                 'buttons' => [ 'primjer' => function ($url, $model, $key){return '<a href="#">Primjer</a>';} ],
                 'template' => '{view} {update} {delete} {primjer}',
                 'controller' => 'CountryGridEdit'
             ]
+            */
         ]
     ]);
     $code = ___kiz_pre_code_end();
