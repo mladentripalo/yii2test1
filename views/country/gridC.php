@@ -49,9 +49,7 @@
     $dataProvider = new \yii\data\ActiveDataProvider([
         'query' => $query,
         'totalCount' => $nRows,
-        'pagination' => [
-            'pageSize' => 5
-        ],
+        'pagination' => [ 'pageSize' => 5 ],
         'sort' => ['attributes' => [ 'ivica','marica','raja','janica' ]]
     ]);
         $result = GridView::widget([
@@ -119,8 +117,4 @@
 <h3>Code:</h3>
 
 <?= $code ?>
-
-<?= kiz_yii_varDump($dataProvider) ?>
-<?= kiz_yii_varInspect('neki string') ?>
-<?= kiz_yii_varDump(67) ?>
 
