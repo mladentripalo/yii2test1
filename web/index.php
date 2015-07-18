@@ -13,6 +13,4 @@ require('C:\xampp\htdocs\yii2basic_2.0.4_vendor\vendor/yiisoft/yii2/Yii.php');
 
 $config = require(__DIR__ . '/../config/web.php');
 
-
-
 (new yii\web\Application($config))->run();
